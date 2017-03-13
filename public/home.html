@@ -1,0 +1,298 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+	    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+	    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+		<title>Feed Me</title>
+
+		<!-- MARK: jQuery -->
+		<script src="https://code.jquery.com/jquery-3.1.1.min.js"
+  		integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+  		crossorigin="anonymous"></script>
+
+		<!-- MARK: Bootstrap -->
+		<!-- Latest compiled and minified CSS -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+		<!-- Optional theme -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+		<!-- Latest compiled and minified JavaScript -->
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+		<!-- MARK: Font Awesome -->
+        <link rel="stylesheet" href="css/font-awesome-4.7.0/css/font-awesome.min.css">
+
+        <!-- MARK: Google Fonts -->
+        <link href='https://fonts.googleapis.com/css?family=Vollkorn|Roboto+Condensed' rel='stylesheet' type='text/css'>
+
+        <!-- MARK: main.css -->
+        <link href="css/main.css" rel="stylesheet" type="text/css">
+
+        <!-- News API Key: e7f157684e404d84aa814fa4691fc77e -->
+	</head>
+	<style>
+		#profile-link {
+			background-color: transparent;
+		}
+
+		#profile-link:hover {
+			color: #fff;
+		}
+
+		#profile-link:active {
+			color: #fff;
+		}
+
+		#profile-link:focus {
+			color: #fff;
+		}
+
+		#main-container {
+			margin: 0 auto;
+			margin-bottom: 100px;
+			margin-top: 25px;
+			width: 90%;
+		}
+
+		#col-1 {
+			/*height: 80vh;
+			overflow: auto;
+			padding: 0 10px 0 10px;*/
+		}
+
+		.article {
+			border: 1px solid #e0e0e0;
+			border-radius: 3px;
+			background-color: #fff;
+			margin: 0 10px 20px 0;	
+		}
+
+		.article a {
+			color: #4ab086;
+		}
+
+		.article a:hover {
+			color: #198763;
+		}
+
+		.img-container {
+			border-top-left-radius: 3px;
+			border-top-right-radius: 3px;
+		}
+
+		.img-container img {
+			border-top-left-radius: 3px;
+			border-top-right-radius: 3px;
+		}
+
+		.img-container img:hover {
+			opacity: 0.9;
+		}
+
+		.info {
+			background-color: #f6f7f9;
+			border-bottom-left-radius: 3px;
+			border-bottom-right-radius: 3px;
+			border-top: 1px solid #ededed;
+			padding: 10px;
+		}
+
+		.description {
+			background-color: #f6f7f9;
+			padding-bottom: 5px;
+		}
+
+		.source {
+			border-top: 1px solid #ededed;
+			margin: -10px;
+			margin-bottom: -15px;
+			padding: 5px 0 0 10px;
+		}
+
+
+	</style>
+	<body>
+		<nav class="navbar navbar-dafault green-bg">
+			<div class="container-fluid">
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+						<span class="sr-only">Toggle navigation</span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+					<a class="navbar-brand" href="home.html">
+						<i class="fa fa-play-circle white"></i>
+						<span class="white robot">FEED ME</span>
+					</a>
+				</div>
+				<div id="navbar" class="navbar-collapse collapse">
+					<ul class="nav navbar-nav navbar-right">
+						<li class="dropdown">
+							<a href="#" id="profile-link" class="dropdown-toggle robot white" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"></a>
+							<ul class="dropdown-menu robot">
+								<li><a href="profile.html">View Profile</a></li>
+								<li><a href="#">View Feed</a></li>
+								<li><a href="configure.html">Configure</a></li>
+								<li role="separator" class="divider"></li>
+								<li><a href="#">Settings</a></li>
+								<li><a id="logout-link" href="#">Log out</a></li>
+							</ul>
+						</li>
+					</ul>
+				</div><!--/.navbar-collapse -->
+			</div>
+		</nav>
+		<div class="container">
+			<main id="main">
+				<div class="row" id="main-container">
+					<div class="col-xs-12 col-sm-4 col-lg-4 right-divider" id="col-1">
+						<!-- MARK: Dynamic web content -->
+					</div>
+					<div class="col-xs-12 col-sm-4 col-lg-4" id="col-2">
+						
+					</div>
+					<div class="col-xs-12 col-sm-4 col-lg-4 left-divider" id="col-3">
+						
+					</div>
+				</div>
+			</main>
+		</div>
+		<footer>
+			<div id="copyright">
+				<p class="robot small gray">Powered by <a href="http://NewsAPI.org" target="_blank">News API</a></p>
+				<p class="robot small gray">&copy; 2017 Feed Me, Inc.</p>
+			</div>
+		</footer>
+		<!-- MARK: Firebase .js scripts -->
+    	<script src="https://www.gstatic.com/firebasejs/3.7.1/firebase.js"></script>
+		<script>
+			// Initialize Firebase
+			var config = {
+				apiKey: "AIzaSyDxLUQwokIJwH-ty-M438Hf-9ZfphgceLE",
+				authDomain: "feed-f1210.firebaseapp.com",
+				databaseURL: "https://feed-f1210.firebaseio.com",
+				storageBucket: "feed-f1210.appspot.com",
+				messagingSenderId: "219342358636"
+			};
+			firebase.initializeApp(config);
+
+			// Call initApp() upon the window loading
+			window.onload = function() {
+				initHome();
+			}
+    	</script>
+    	<script>
+    		function handleLogOut() {
+    			var user = firebase.auth().currentUser;
+    			if (user) {
+    				// Sign out the user
+    				firebase.auth().signOut().then(function() {
+    					// Sign out successful
+    				}).catch(function() {
+    					// Error occurred
+    				});
+    			}
+    		}
+
+    		function initHome() {
+	    		firebase.auth().onAuthStateChanged(function(user) {
+					if (user) {
+						// Populate username info
+						var profile = document.getElementById('profile-link');
+						var body = document.getElementById('body-text');
+
+						// Get the current user
+						var user = firebase.auth().currentUser;
+						if (user) {
+							var ref = firebase.database().ref('users/' + user.uid);
+							ref.once('value').then(function(snapshot) {
+								var child = snapshot.child('username').val();
+								profile.innerHTML = child + " <span class=\"caret\"></span>";
+							}).catch(function(error){
+								// Error occurred
+							});
+						}
+					} else {
+						// User is not signed in, segue to login page
+						window.location = 'index.html';
+					}
+				});
+
+				document.getElementById('logout-link').addEventListener('click', handleLogOut, false);
+			}
+    	</script>
+    	<script>
+    		var xhr = new XMLHttpRequest();
+    		xhr.open('GET', "https://newsapi.org/v1/articles?source=techcrunch&sortBy=top&apiKey=e7f157684e404d84aa814fa4691fc77e", true);
+    		xhr.send();
+
+    		xhr.onreadystatechange = processRequest;
+
+    		/**
+    		 * MARK: 
+    		 */
+    		function processRequest() {
+    			if (xhr.readyState == 4 && xhr.status == 200) {
+    				var response = JSON.parse(xhr.responseText);
+    				console.log(response);
+    				for (var i = 0; i < response.articles.length; i++) {
+    					var article = document.createElement('div');
+    					article.className = 'article';
+    					document.getElementById('col-1').appendChild(article);
+
+    					// alert(response.articles[i].urlToImage == null);
+    					if (response.articles[i].urlToImage != null) {
+    						var container = document.createElement('div');
+    						container.className = 'img-container';
+    						article.appendChild(container);
+
+	    					var img = document.createElement('div');
+	    					img.className = 'image';
+	    					img.innerHTML = '<a href=\"' + response.articles[i].url + '\" target=\"_blank\"><img src=\"' + response.articles[i].urlToImage + '\" width=\"100%\"></a>';
+	    					container.appendChild(img);
+    					}
+
+    					var info = document.createElement('div');
+    					info.className = 'info';
+    					article.appendChild(info);
+
+
+    					var title = document.createElement('div');
+    					title.className = 'title';
+    					title.innerHTML = '<a href=\"' + response.articles[i].url + '\" target=\"_blank\"><p class=\"font-nm bold robot\">' + response.articles[i].title + '</p></a>';
+    					info.appendChild(title);
+
+    					var description = document.createElement('div');
+    					description.className = "description";
+    					description.innerHTML = '<p class=\"font-sm robot gray\">' + response.articles[i].description + '</p>';
+    					info.appendChild(description);
+
+    					var source = document.createElement('div');
+    					source.className = "source";
+    					source.innerHTML = '<p class=\"font-sm robot green-dk text-capitalize\">' + stripDashes(response.source) + '</p>';
+    					info.appendChild(source);
+
+    					console.log(response.articles[i].title);
+    				}
+
+    			}
+
+    			function stripDashes(str) {
+    				var ret = "";
+    				for (var i = 0; i < str.length; i++) {
+    					if (str[i] != '-') {
+    						ret += str[i];
+    					} else {
+    						ret += ' ';
+    					}
+    				}
+    				return ret;
+    			}
+    		}
+    	</script>
+	</body>
+</html>

@@ -1,0 +1,115 @@
+
+
+/* MARK: Body styles */
+body {
+	background-color: #edeff1;
+	height: 100%;
+	margin: 0;
+}
+
+
+
+/* MARK: Navbar styles */
+.navbar {
+	border-radius: 0px;
+}
+
+
+
+/* MARK: Footer styles */
+footer {
+	border-top: 1px solid #d3d3d3;
+}
+
+#copyright {
+	padding: 15px 0 10px 0;
+	text-align: center;
+}
+
+
+
+/* MARK: Colors */
+.green {
+	color: #4ab086;
+}
+
+.green-dk {
+	color: #198763;
+}
+
+.gray {
+	color: #878787;
+}
+
+.white {
+	color: #fff;
+}
+
+.green-bg {
+	background-color: #4ab086;
+}
+
+
+
+/* MARK: Fonts */
+.robot {
+	font-family: 'Roboto Condensed', sans-serif;
+}
+
+
+
+/* MARK: Font Sizes */
+.font-sm {
+	font-size: 0.75em;
+}
+
+.font-nm {
+	font-size: 1em;
+}
+
+.font-md {
+	font-size: 1.25em;
+}
+
+.font-lg {
+	font-size: 1.5em;
+}
+
+.font-xlg {
+	font-size: 1.75em;
+}
+
+.font-2x {
+	font-size: 2em;
+}
+
+.font-3x {
+	font-size: 3em;
+}
+
+.font-4x {
+	font-size: 4em;
+}
+
+.font-5x {
+	font-size: 5em;
+}
+
+.bold {
+	font-weight: bold;
+}
+
+
+
+/* MARK: Dividers */
+.divider {
+	border-top: 1px dotted #d3d3d3;
+}
+
+.left-divider {
+	border-left: 1px solid #d3d3d3;
+}
+
+.right-divider {
+	border-right: 1px solid #d3d3d3;
+}
