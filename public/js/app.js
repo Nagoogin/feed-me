@@ -16,7 +16,10 @@ function toggleLogIn() {
   }
 
   // Log in with email and password
-  firebase.auth().signInWithEmailAndPassword(email, password).catch(function(error) {
+  firebase.auth().signInWithEmailAndPassword(email, password).then(function(user) {
+    // Upon completion of promise, segue to home
+    window.location = 'home.html';
+  }).catch(function(error) {
     // Handle errors
     var errorCode = error.code;
     var errorMessage = error.message;
@@ -39,23 +42,8 @@ function toggleLogIn() {
 function handleSignUp() {
   var email = document.getElementById('signup-email').value;
   var password = document.getElementById('signup-password').value;
-
-  // Get other user info
-  var fname = document.getElementById('fname').value;
-  var lname = document.getElementById('lname').value;
-  var username = document.getElementById('username').value;
   var repeatedPassword = document.getElementById('repeated-password').value;
 
-  // Get the value of the gender radio buttons
-  var gender = null;
-  var radios = document.getElementsByName('genderOptions');
-  for (var i = 0; i < radios.length; i++) {
-    if (radios[i].checked) {
-      gender = radios[i].value;
-      break;
-    }
-  }
-  
   // TODO: replace with more robust error checking
   if (email.length < 4) {
     alert('Please enter an email address');
@@ -72,19 +60,16 @@ function handleSignUp() {
 
   // Sign up with email and password
   firebase.auth().createUserWithEmailAndPassword(email, password).then(function(user) {
-    firebase.database().ref().child("users/" + user.uid).set({
-      first_name: fname,
-      last_name: lname,
-      gender: gender,
-      email: email,
-      username: username,
-      preferences: {
-        news: {
-          0: "none"
-        }
-      },
-      uid: user.uid
-    });
+    // firebase.database().ref().child("users/" + user.uid).set({
+    //   first_name: fname,
+    //   last_name: lname,
+    //   gender: gender,
+    //   email: email,
+    //   username: username,
+    //   uid: user.uid
+    // });
+    // segue to home
+    window.location = 'home.html';
   }).catch(function(error) {
     var errorCode = error.code;
     var errorMessage = error.message;

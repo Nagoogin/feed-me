@@ -56,6 +56,11 @@ footer {
 	font-family: 'Roboto Condensed', sans-serif;
 }
 
+/* MARK: Font Styles */
+.bold {
+	font-weight: bold;
+}
+
 
 
 /* MARK: Font Sizes */
@@ -112,4 +117,15 @@ footer {
 
 .right-divider {
 	border-right: 1px solid #d3d3d3;
+}
+
+
+
+/* MARK: Aligners */
+.align-left {
+	float: left;
+}
+
+.align-right {
+	float: right;
 }

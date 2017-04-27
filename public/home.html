@@ -149,13 +149,13 @@
 		<div class="container">
 			<main id="main">
 				<div class="row" id="main-container">
-					<div class="col-xs-12 col-sm-4 col-lg-4 right-divider" id="col-1">
+					<div class="col-xs-12 col-sm-4 col-lg-4" id="col-1">
 						<!-- MARK: Dynamic web content -->
 					</div>
 					<div class="col-xs-12 col-sm-4 col-lg-4" id="col-2">
 						
 					</div>
-					<div class="col-xs-12 col-sm-4 col-lg-4 left-divider" id="col-3">
+					<div class="col-xs-12 col-sm-4 col-lg-4" id="col-3">
 						
 					</div>
 				</div>
@@ -168,15 +168,17 @@
 			</div>
 		</footer>
 		<!-- MARK: Firebase .js scripts -->
-    	<script src="https://www.gstatic.com/firebasejs/3.7.1/firebase.js"></script>
+
+
+		<script src="https://www.gstatic.com/firebasejs/3.7.3/firebase.js"></script>
 		<script>
 			// Initialize Firebase
 			var config = {
-				apiKey: "AIzaSyDxLUQwokIJwH-ty-M438Hf-9ZfphgceLE",
-				authDomain: "feed-f1210.firebaseapp.com",
-				databaseURL: "https://feed-f1210.firebaseio.com",
-				storageBucket: "feed-f1210.appspot.com",
-				messagingSenderId: "219342358636"
+				apiKey: "AIzaSyBCL6swSBPzGvrRwA-AL8C-y81jkkMuq3g",
+				authDomain: "feed-me-cc940.firebaseapp.com",
+				databaseURL: "https://feed-me-cc940.firebaseio.com",
+				storageBucket: "feed-me-cc940.appspot.com",
+				messagingSenderId: "287104040203"
 			};
 			firebase.initializeApp(config);
 
@@ -184,7 +186,8 @@
 			window.onload = function() {
 				initHome();
 			}
-    	</script>
+
+		</script>
     	<script>
     		function handleLogOut() {
     			var user = firebase.auth().currentUser;
@@ -208,14 +211,9 @@
 						// Get the current user
 						var user = firebase.auth().currentUser;
 						if (user) {
-							var ref = firebase.database().ref('users/' + user.uid);
-							ref.once('value').then(function(snapshot) {
-								var child = snapshot.child('username').val();
-								profile.innerHTML = child + " <span class=\"caret\"></span>";
-							}).catch(function(error){
-								// Error occurred
-							});
+							profile.innerHTML = user.email + " <span class=\"caret\"></span>";
 						}
+						getNews();
 					} else {
 						// User is not signed in, segue to login page
 						window.location = 'index.html';
@@ -224,75 +222,20 @@
 
 				document.getElementById('logout-link').addEventListener('click', handleLogOut, false);
 			}
+
+			function getNews() {
+				var news = [];
+				var user = firebase.auth().currentUser;
+				if (user) {
+					firebase.database().ref('/users/' + user.uid).on('value', function(snapshot) {
+						console.log(snapshot.val());
+					}, function(error) {
+						console.log('ERROR: ' + error.code);
+					});
+				}
+			}
     	</script>
-    	<script>
-    		var xhr = new XMLHttpRequest();
-    		xhr.open('GET', "https://newsapi.org/v1/articles?source=techcrunch&sortBy=top&apiKey=e7f157684e404d84aa814fa4691fc77e", true);
-    		xhr.send();
+    	<script src="js/feed.js"></script>
 
-    		xhr.onreadystatechange = processRequest;
-
-    		/**
-    		 * MARK: 
-    		 */
-    		function processRequest() {
-    			if (xhr.readyState == 4 && xhr.status == 200) {
-    				var response = JSON.parse(xhr.responseText);
-    				console.log(response);
-    				for (var i = 0; i < response.articles.length; i++) {
-    					var article = document.createElement('div');
-    					article.className = 'article';
-    					document.getElementById('col-1').appendChild(article);
-
-    					// alert(response.articles[i].urlToImage == null);
-    					if (response.articles[i].urlToImage != null) {
-    						var container = document.createElement('div');
-    						container.className = 'img-container';
-    						article.appendChild(container);
-
-	    					var img = document.createElement('div');
-	    					img.className = 'image';
-	    					img.innerHTML = '<a href=\"' + response.articles[i].url + '\" target=\"_blank\"><img src=\"' + response.articles[i].urlToImage + '\" width=\"100%\"></a>';
-	    					container.appendChild(img);
-    					}
-
-    					var info = document.createElement('div');
-    					info.className = 'info';
-    					article.appendChild(info);
-
-
-    					var title = document.createElement('div');
-    					title.className = 'title';
-    					title.innerHTML = '<a href=\"' + response.articles[i].url + '\" target=\"_blank\"><p class=\"font-nm bold robot\">' + response.articles[i].title + '</p></a>';
-    					info.appendChild(title);
-
-    					var description = document.createElement('div');
-    					description.className = "description";
-    					description.innerHTML = '<p class=\"font-sm robot gray\">' + response.articles[i].description + '</p>';
-    					info.appendChild(description);
-
-    					var source = document.createElement('div');
-    					source.className = "source";
-    					source.innerHTML = '<p class=\"font-sm robot green-dk text-capitalize\">' + stripDashes(response.source) + '</p>';
-    					info.appendChild(source);
-
-    					console.log(response.articles[i].title);
-    				}
-
-    			}
-
-    			function stripDashes(str) {
-    				var ret = "";
-    				for (var i = 0; i < str.length; i++) {
-    					if (str[i] != '-') {
-    						ret += str[i];
-    					} else {
-    						ret += ' ';
-    					}
-    				}
-    				return ret;
-    			}
-    		}
-    	</script>
 	</body>
 </html>

@@ -8,10 +8,8 @@
     <title>Feed Me</title>
 
     <!-- MARK: jQuery -->
-    <script
-  src="https://code.jquery.com/jquery-3.1.1.min.js"
-  integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
-  crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+
     <!-- MARK: Bootstrap -->
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
@@ -23,7 +21,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 
     <!-- MARK: Font Awesome -->
-      <link rel="stylesheet" href="css/font-awesome-4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/font-awesome-4.7.0/css/font-awesome.min.css">
 
     <!-- MARK: Google Fonts -->
     <link href='https://fonts.googleapis.com/css?family=Vollkorn|Roboto+Condensed' rel='stylesheet' type='text/css'>
@@ -148,23 +146,6 @@
             <p class="robot green-dk font-lg bold" id="form-title">Don't have an account? Create one!</p>
             <div id="signup-form" class="form-group">
               <div class="divider" style="margin-bottom: 20px;"></div>
-              <table style="width: 100%;">
-                <tr>
-                  <td>
-                    <div class="form-group" style="margin-right: 10px;">
-                      <input id="fname" type="text" placeholder="First name" class="form-control">
-                    </div>
-                  </td>
-                  <td>
-                    <div class="form-group">
-                      <input id="lname" type="text" placeholder="Last name" class="form-control">
-                    </div>
-                  </td>
-                </tr>
-              </table>
-              <div class="form-group">
-                <input id="username" type="text" placeholder="Username" class="form-control">
-              </div>
               <div class="form-group">
                 <input id="signup-email" type="email" placeholder="Email" class="form-control">
               </div>
@@ -173,15 +154,6 @@
               </div>
               <div class="form-group">
                 <input id="repeated-password" type="password" placeholder="Repeat password" class="form-control">
-              </div>
-              <div id="gender" style="text-align: left; margin-bottom: 20px;">
-                <p class="font-nm bold">Gender:<p>
-                <label class="radio-inline">
-                  <input type="radio" name="genderOptions" id="male" value="male"> Male
-                </label>
-                <label class="radio-inline">
-                  <input type="radio" name="genderOptions" id="female" value="female"> Female
-                </label>
               </div>
               <div class="divider" style="margin-bottom: 20px;"></div>
               <div id="disclaimer">
@@ -197,20 +169,25 @@
         <div id="copyright">
             <p class="robot small gray">&copy; 2017 Feed Me, Inc.</p>
         </div>
-    </footer> 
-    <!-- MARK: Firebase .js scripts -->
-    <script src="https://www.gstatic.com/firebasejs/3.7.1/firebase.js"></script>
+    </footer>
+    <script src="https://www.gstatic.com/firebasejs/3.7.3/firebase.js"></script>
     <script>
       // Initialize Firebase
       var config = {
-        apiKey: "AIzaSyDxLUQwokIJwH-ty-M438Hf-9ZfphgceLE",
-        authDomain: "feed-f1210.firebaseapp.com",
-        databaseURL: "https://feed-f1210.firebaseio.com",
-        storageBucket: "feed-f1210.appspot.com",
-        messagingSenderId: "219342358636"
+        apiKey: "AIzaSyBCL6swSBPzGvrRwA-AL8C-y81jkkMuq3g",
+        authDomain: "feed-me-cc940.firebaseapp.com",
+        databaseURL: "https://feed-me-cc940.firebaseio.com",
+        storageBucket: "feed-me-cc940.appspot.com",
+        messagingSenderId: "287104040203"
       };
       firebase.initializeApp(config);
-      (function() {
+
+      // Call initApp() upon the window loading
+      window.onload = function() {
+        initApp();
+      }
+    </script>
+    <!-- <script>
         firebase.auth().onAuthStateChanged(function(user) {
           if (user) {
             setTimeout(function() {
@@ -218,14 +195,7 @@
             }, 2000);
           }
         });
-      }());
-
-      // Call initApp() upon the window loading
-      window.onload = function() {
-        initApp();
-      }
-    </script>
+    </script> -->
     <script src="js/app.js"></script>
-
     </body>
 </html>

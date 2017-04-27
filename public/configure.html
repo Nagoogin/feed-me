@@ -31,6 +31,8 @@
     <!-- MARK: main.css -->
     <link href="css/main.css" rel="stylesheet" type="text/css">
 
+    <script src="js/constants.js"></script>
+
     <!-- News API Key: e7f157684e404d84aa814fa4691fc77e -->
 </head>
 <style>
@@ -39,16 +41,49 @@
 	}
 
 	#profile-link:hover {
-		color: #fff;
+		color: #FFF;
 	}
 
 	#profile-link:active {
-		color: #fff;
+		color: #FFF;
 	}
 
 	#profile-link:focus {
-		color: #fff;
+		color: #FFF;
 	}
+
+	.source {
+		color: #FFF;
+		border-radius: 4px;
+		display: inline-block;
+		font-family: 'Roboto Condensed', sans-serif;
+		font-size: 1.5em;
+		font-weight: bold;
+		padding: 12px;
+		margin: 7px;
+		width: auto;
+
+		-webkit-user-select: none; /* Chrome/Safari */
+		-moz-user-select: none; /* Firefox */
+		-ms-user-select: none; /* IE10+ */
+
+		/* Rules below not implemented in browsers yet */
+		-o-user-select: none;
+		user-select: none;
+	}
+
+	.source:hover {
+		cursor: pointer;
+	}
+
+	#main-container {
+		margin: 50px 50px 100px 50px;
+	}
+
+	#divider {
+		margin-top: 25px;
+	}
+
 </style>
 <body>
 	<!-- MARK: Navbar -->
@@ -83,16 +118,15 @@
 			</div><!--/.navbar-collapse -->
 		</div>
 	</nav>
-	<!-- MARK: Sub-header message -->
-	<div id="sub-header">
-
-	</div>
 
 	<!-- MARK: Main -->
 	<div class="container">
 		<main id="main">
 			<div class="row" id="main-container">
-
+				<h1 class="robot font-3x bold" style="margin-left: 10px;">Configure your media feed</h2>
+				<h3 class="robot font-xlg gray" style="margin-left: 10px;">Click the news sources that you want to follow</h4>
+				<div id="divider"></div>
+				<div id="sources-list"></div>
 			</div>
 		</main>
 	</div>
@@ -104,22 +138,24 @@
 			<p class="robot small gray">&copy; 2017 Feed Me, Inc.</p>
 		</div>
 	</footer>
+
 	<!-- MARK: Firebase .js scripts -->
 	<script src="https://www.gstatic.com/firebasejs/3.7.1/firebase.js"></script>
 	<script>
 		// Initialize Firebase
 		var config = {
-			apiKey: "AIzaSyDxLUQwokIJwH-ty-M438Hf-9ZfphgceLE",
-			authDomain: "feed-f1210.firebaseapp.com",
-			databaseURL: "https://feed-f1210.firebaseio.com",
-			storageBucket: "feed-f1210.appspot.com",
-			messagingSenderId: "219342358636"
+			apiKey: "AIzaSyBCL6swSBPzGvrRwA-AL8C-y81jkkMuq3g",
+			authDomain: "feed-me-cc940.firebaseapp.com",
+			databaseURL: "https://feed-me-cc940.firebaseio.com",
+			storageBucket: "feed-me-cc940.appspot.com",
+			messagingSenderId: "287104040203"
 		};
 		firebase.initializeApp(config);
 
 		// Call initApp() upon the window loading
 		window.onload = function() {
 			initHome();
+			// addSources();
 		}
 	</script>
 	<script>
@@ -145,23 +181,120 @@
 					// Get the current user
 					var user = firebase.auth().currentUser;
 					if (user) {
-						var ref = firebase.database().ref('users/' + user.uid);
-						ref.once('value').then(function(snapshot) {
-							var child = snapshot.child('username').val();
-							profile.innerHTML = child + " <span class=\"caret\"></span>";
-							document.title = child;
-						}).catch(function(error){
-							// Error occurred
-						});
+						profile.innerHTML = user.email + " <span class=\"caret\"></span>";
+						getNews();
 					}
 				} else {
 					// User is not signed in, segue to login page
 					window.location = 'index.html';
 				}
 			});
-
-			document.getElementById('logout-link').addEventListener('click', handleLogOut, false);
+			var logout = document.getElementById('logout-link');
+			logout.addEventListener('click', handleLogOut, false);
 		}
-	</script> 
+
+		function loadSources(news) {
+			// Sort the sources array
+			// sources.sort((a, b) => a.name.localeCompare(b.name));
+			for (var i = 0; i < sources.length; i++) {
+				var source = document.createElement('div');
+				source.className = 'source';
+				var alreadySelected = false;
+				for (var j = 0; j < news.length; j++) {
+					if (sources[i].name == news[j]) {
+						alreadySelected = true;
+					}
+				}
+				if (alreadySelected) {
+					source.style.backgroundColor = 'orange';
+				} else {
+					var index = Math.round(Math.random()*3);
+					source.style.backgroundColor = greens[index];
+				}
+				source.innerHTML = sources[i].name;
+				document.getElementById('sources-list').appendChild(source);
+
+			}
+		}
+	</script>
+	<script>
+	  /**
+		 * Handles a clicked source div by adding/removing source in Firebase
+		 */
+		$(document).on('click', '.source', function(){
+			if ($(this).css('background-color') == 'rgb(255, 165, 0)') {
+				var index = Math.round(Math.random()*3);
+				$(this).css('background-color', greens[index]);
+				removeSource($(this).text());
+			} else {
+				$(this).css('background-color', 'orange');
+				saveSource($(this).text());
+			}
+		});
+
+		/**
+		 * Saves a source to Firebase
+		 */
+		function saveSource(source) {
+			var user = firebase.auth().currentUser;
+			var url;
+			for (var i = 0; i < sources.length; i++) {
+				if (sources[i].name == source) {
+					url = sources[i].url;
+				}
+			}
+			if (user) {
+				firebase.database().ref('/users/' + user.uid + '/news').push({
+					name: source,
+					url: url
+				});
+			}
+		}
+
+		/**
+		 * Removes a news source from Firebase
+		 */
+		function removeSource(source) {
+			var user = firebase.auth().currentUser;
+			if (user) {
+				// Get the firebase ref of the news array
+				var ref = firebase.database().ref('/users/' + user.uid + '/news');
+				ref.once('value', function(snapshot) {
+					// Iterate over the children of the news array
+					snapshot.forEach(function(childSnapshot) {
+						// If there is a source name match with source param delete it
+						if (source == childSnapshot.val().name) {
+							var key = childSnapshot.key;
+							var refToDelete = firebase.database().ref('/users/' + user.uid +
+						  '/news/' + key);
+							refToDelete.remove();
+						}
+					});
+				});
+			}
+		}
+
+		/**
+		 * Get the names pf the news sources from Firebase and populate local array
+		 * to load sources divs in page
+		 */
+		function getNews() {
+			var news = [];
+			var user = firebase.auth().currentUser;
+			if (user) {
+				var ref = firebase.database().ref('/users/' + user.uid + '/news');
+				ref.once('value', function(snapshot) {
+					snapshot.forEach(function(childSnapshot) {
+						var name = childSnapshot.val().name;
+						news.push(name);
+					});
+					for (var i = 0; i < news.length; i++) {
+						console.log(news[i]);
+					}
+					loadSources(news);
+				});
+			}
+		}
+	</script>
 </body>
 </html>

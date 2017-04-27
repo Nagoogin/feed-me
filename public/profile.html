@@ -5,7 +5,7 @@
 	    <meta http-equiv="X-UA-Compatible" content="IE=edge">
 	    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-		<title></title>
+		<title>Feed Me</title>
 
 		<!-- MARK: jQuery -->
 		<script src="https://code.jquery.com/jquery-3.1.1.min.js"
@@ -30,6 +30,8 @@
 
         <!-- MARK: main.css -->
         <link href="css/main.css" rel="stylesheet" type="text/css">
+
+        <script src="js/constants.js"></script>
 	</head>
 	<style>
 		#profile-link {
@@ -91,6 +93,9 @@
 		<div class="container">
 			<main id="main">
 				<div class="row" id="main-container">
+					<div id="email"></div>
+					<h2>Following</h2>
+					<div id="sources"></div>
 				</div>
 			</main>
 		</div>
@@ -99,24 +104,26 @@
 				<p class="robot small gray">&copy; 2017 Feed Me, Inc.</p>
 			</div>
 		</footer>
-		<!-- MARK: Firebase .js scripts -->
-    	<script src="https://www.gstatic.com/firebasejs/3.7.1/firebase.js"></script>
+		
+		<script src="https://www.gstatic.com/firebasejs/3.7.3/firebase.js"></script>
 		<script>
 			// Initialize Firebase
 			var config = {
-				apiKey: "AIzaSyDxLUQwokIJwH-ty-M438Hf-9ZfphgceLE",
-				authDomain: "feed-f1210.firebaseapp.com",
-				databaseURL: "https://feed-f1210.firebaseio.com",
-				storageBucket: "feed-f1210.appspot.com",
-				messagingSenderId: "219342358636"
+				apiKey: "AIzaSyBCL6swSBPzGvrRwA-AL8C-y81jkkMuq3g",
+				authDomain: "feed-me-cc940.firebaseapp.com",
+				databaseURL: "https://feed-me-cc940.firebaseio.com",
+				storageBucket: "feed-me-cc940.appspot.com",
+				messagingSenderId: "287104040203"
 			};
 			firebase.initializeApp(config);
 
 			// Call initApp() upon the window loading
 			window.onload = function() {
 				initHome();
+				loadProfileInfo();
 			}
-    	</script>
+
+		</script>
     	<script>
     		function handleLogOut() {
     			var user = firebase.auth().currentUser;
@@ -140,14 +147,7 @@
 						// Get the current user
 						var user = firebase.auth().currentUser;
 						if (user) {
-							var ref = firebase.database().ref('users/' + user.uid);
-							ref.once('value').then(function(snapshot) {
-								var child = snapshot.child('username').val();
-								profile.innerHTML = child + " <span class=\"caret\"></span>";
-								document.title = child;
-							}).catch(function(error){
-								// Error occurred
-							});
+							profile.innerHTML = user.email + " <span class=\"caret\"></span>";
 						}
 					} else {
 						// User is not signed in, segue to login page
@@ -156,6 +156,37 @@
 				});
 
 				document.getElementById('logout-link').addEventListener('click', handleLogOut, false);
+			}
+
+			function loadProfileInfo() {
+				firebase.auth().onAuthStateChanged(function(user) {
+					if (user) {
+						// Populate profile info
+						var email = document.getElementById('email');
+
+						var user = firebase.auth().currentUser;
+						if (user) {
+							email.innerHTML = '<strong><h1>' + user.email + '</h1></strong><br>';
+							loadSources();
+							
+						}
+					}
+				});
+			}
+
+			function loadSources() {
+				var user = firebase.auth().currentUser;
+				if (user) {
+					firebase.database().ref('/users/' + user.uid + '/news').once('value', function(snapshot) {
+						snapshot.forEach(function(childSnapshot) {
+							var name = childSnapshot.val().name;
+							var source = document.createElement('div');
+							source.innerHTML = name;
+							var container = document.getElementById('sources');
+							container.appendChild(source);
+						});
+					});
+				}
 			}
     	</script>
 	</body>
