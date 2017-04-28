@@ -67,7 +67,7 @@
 			border: 1px solid #e0e0e0;
 			border-radius: 3px;
 			background-color: #fff;
-			margin: 0 10px 20px 0;	
+			margin: 0 10px 20px 0;
 		}
 
 		.article a {
@@ -153,10 +153,10 @@
 						<!-- MARK: Dynamic web content -->
 					</div>
 					<div class="col-xs-12 col-sm-4 col-lg-4" id="col-2">
-						
+
 					</div>
 					<div class="col-xs-12 col-sm-4 col-lg-4" id="col-3">
-						
+
 					</div>
 				</div>
 			</main>
@@ -227,15 +227,121 @@
 				var news = [];
 				var user = firebase.auth().currentUser;
 				if (user) {
-					firebase.database().ref('/users/' + user.uid).on('value', function(snapshot) {
-						console.log(snapshot.val());
-					}, function(error) {
-						console.log('ERROR: ' + error.code);
+					var ref = firebase.database().ref('/users/' + user.uid + '/news');
+					ref.once('value', function(snapshot) {
+						snapshot.forEach(function(childSnapshot) {
+							news.push(childSnapshot.val().url);
+						});
+						loadNews(news);
 					});
 				}
 			}
+
+			function loadNews(news) {
+				var articles = []
+				var xhrRequests = new Array();
+				for (var i = 0; i < news.length; i++) {
+					(function(i) {
+						xhrRequests[i] = new XMLHttpRequest();
+						xhrRequests[i].open('GET', news[i], true);
+						xhrRequests[i].send();
+
+						xhrRequests[i].onreadystatechange = function () {
+								if (xhrRequests[i].readyState == 4 && xhrRequests[i].status == 200) {
+								var response = JSON.parse(xhrRequests[i].responseText);
+								for (var j = 0, k = 1; j < response.articles.length; j++) {
+									var article = document.createElement('div');
+									article.className = 'article';
+									document.getElementById('col-' + k).appendChild(article);
+									console.log(k);
+									k++;
+									if (k == 4) { k = 1; }
+									// articles.push(article);
+
+									// alert(response.articles[i].urlToImage == null);
+									if (response.articles[j].urlToImage != null) {
+										var container = document.createElement('div');
+										container.className = 'img-container';
+										article.appendChild(container);
+
+											var img = document.createElement('div');
+											img.className = 'image';
+											img.innerHTML = '<a href=\"' + response.articles[j].url +
+											'\" target=\"_blank\"><img src=\"' + response.articles[j].urlToImage +
+											'\" width=\"100%\"></a>';
+											container.appendChild(img);
+									}
+
+									var info = document.createElement('div');
+									info.className = 'info';
+									article.appendChild(info);
+
+									var title = document.createElement('div');
+									title.className = 'title';
+									title.innerHTML = '<a href=\"' + response.articles[j].url +
+									'\" target=\"_blank\"><p class=\"font-nm bold robot\">' +
+									response.articles[j].title + '</p></a>';
+									info.appendChild(title);
+
+									var description = document.createElement('div');
+									description.className = "description";
+									description.innerHTML = '<p class=\"font-sm robot gray\">' +
+									response.articles[j].description + '.</p>';
+									info.appendChild(description);
+
+									var source = document.createElement('div');
+									source.className = "source";
+									source.innerHTML = '<p class=\"font-sm robot green-dk text-capitalize\">' +
+									stripDashes(response.source) + '</p>';
+									info.appendChild(source);
+								}
+
+							}
+						};
+					})(i);
+				}
+				// Append articles to column divs
+				// for (var i = 0, j = 1; i < articles.length; i++) {
+				// 	console.log(j);
+				// 	document.getElementById('col-' + (j)).appendChild(articles[i]);
+				// 	j++;
+				// 	if (j == 4) { j = 1; }
+				// }
+			}
+
+			function stripDashes(str) {
+				var ret = "";
+				for (var i = 0; i < str.length; i++) {
+					if (str[i] != '-') {
+						ret += str[i];
+					} else {
+						ret += ' ';
+					}
+				}
+				return ret;
+			}
+
+			function shuffle(array) {
+				let counter = array.length;
+
+				// While there are elements in the array
+				while (counter > 0) {
+					// Pick a random index
+					let index = Math.floor(Math.random() * counter);
+
+					// Decrease counter by 1
+					counter--;
+
+					// And swap the last element with it
+					let temp = array[counter];
+					array[counter] = array[index];
+					array[index] = temp;
+				}
+
+				return array;
+			}
     	</script>
-    	<script src="js/feed.js"></script>
+    	<!-- <script src="js/feed.js"></script> -->
 
 	</body>
 </html>

@@ -1,7 +1,8 @@
-var news = ["https://newsapi.org/v1/articles?source=techcrunch&sortBy=top&apiKey=e7f157684e404d84aa814fa4691fc77e", 
+var news = ["https://newsapi.org/v1/articles?source=techcrunch&sortBy=top&apiKey=e7f157684e404d84aa814fa4691fc77e",
 "https://newsapi.org/v1/articles?source=espn&sortBy=top&apiKey=e7f157684e404d84aa814fa4691fc77e",
 "https://newsapi.org/v1/articles?source=national-geographic&sortBy=top&apiKey=e7f157684e404d84aa814fa4691fc77e"];
 var xhrRequests = new Array();
+var articles = [];
 for (var i = 0; i < news.length; i++) {
 	(function(i) {
 		xhrRequests[i] = new XMLHttpRequest();
@@ -14,7 +15,9 @@ for (var i = 0; i < news.length; i++) {
 				for (var j = 0; j < response.articles.length; j++) {
 					var article = document.createElement('div');
 					article.className = 'article';
-					document.getElementById('col-' + (i + 1)).appendChild(article);
+					var index = Math.round(Math.random()*2) + 1;
+					// document.getElementById('col-' + (i + 1)).appendChild(article);
+					articles.push(article);
 
 					// alert(response.articles[i].urlToImage == null);
 					if (response.articles[j].urlToImage != null) {
@@ -52,6 +55,10 @@ for (var i = 0; i < news.length; i++) {
 			}
 		};
 	})(i);
+	// Append articles to column divs
+	for (var i = 0, j = 0; i < articles.length; i++, j++) {
+		document.getElementById('col-' + (j + 1)).appendChild(articles[i]);
+	}
 }
 
 function stripDashes(str) {

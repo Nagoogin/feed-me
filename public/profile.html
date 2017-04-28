@@ -79,7 +79,7 @@
 							<a href="#" id="profile-link" class="dropdown-toggle robot white" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"></a>
 							<ul class="dropdown-menu robot">
 								<li><a href="profile.html">View Profile</a></li>
-								<li><a href="#">View Feed</a></li>
+								<li><a href="home.html">View Feed</a></li>
 								<li><a href="configure.html">Configure</a></li>
 								<li role="separator" class="divider"></li>
 								<li><a href="#">Settings</a></li>
@@ -104,7 +104,7 @@
 				<p class="robot small gray">&copy; 2017 Feed Me, Inc.</p>
 			</div>
 		</footer>
-		
+
 		<script src="https://www.gstatic.com/firebasejs/3.7.3/firebase.js"></script>
 		<script>
 			// Initialize Firebase
@@ -168,7 +168,7 @@
 						if (user) {
 							email.innerHTML = '<strong><h1>' + user.email + '</h1></strong><br>';
 							loadSources();
-							
+
 						}
 					}
 				});
