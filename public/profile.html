@@ -39,22 +39,46 @@
 		}
 
 		#profile-link:hover {
-			color: #fff;
+			color: #FFF;
 		}
 
 		#profile-link:active {
-			color: #fff;
+			color: #FFF;
 		}
 
 		#profile-link:focus {
-			color: #fff;
+			color: #FFF;
 		}
 
 		#main-container {
+			background-color: #FFF;
+			border-radius: 3px;
+			border: 1px solid #D3D3D3;
 			margin: 0 auto;
 			margin-bottom: 100px;
-			margin-top: 25px;
+			margin-top: 50px;
 			width: 95%;
+
+		}
+
+		#top {
+			background-color: #E9EBEE;
+			border-bottom: 1px solid #D3D3D3;
+			border-top-left-radius: 3px;
+			border-top-right-radius: 3px;
+			height: 40px;
+		}
+
+		#profile-container {
+			padding: 25px 25px 50px 25px;
+		}
+
+		.entry {
+			color: #0F513B;
+			border-right: 1px solid #D3D3D3;
+			margin-left: 15px;
+			margin-top: 10px;
+			padding-right: 15px;
 		}
 
 	</style>
@@ -92,10 +116,23 @@
 		</nav>
 		<div class="container">
 			<main id="main">
-				<div class="row" id="main-container">
-					<div id="email"></div>
-					<h2>Following</h2>
-					<div id="sources"></div>
+				<div class="row shadow" id="main-container">
+					<div id="top">
+						<table>
+							<tr>
+								<td>
+									<div class="robot font-nm entry" id="email"></div>
+								</td>
+								<td>
+									<div class="robot font-nm entry" id="num-sources" style="color: orange;"></div>
+								</td>
+							</tr>
+						</table>
+					</div>
+					<div id="profile-container">
+						<h4 class="robot font-lg bold">Following</h4>
+						<div id="sources"></div>
+					</div>
 				</div>
 			</main>
 		</div>
@@ -166,9 +203,8 @@
 
 						var user = firebase.auth().currentUser;
 						if (user) {
-							email.innerHTML = '<strong><h1>' + user.email + '</h1></strong><br>';
+							email.innerHTML = user.email;
 							loadSources();
-
 						}
 					}
 				});
@@ -178,13 +214,17 @@
 				var user = firebase.auth().currentUser;
 				if (user) {
 					firebase.database().ref('/users/' + user.uid + '/news').once('value', function(snapshot) {
+						var counter = 0;
 						snapshot.forEach(function(childSnapshot) {
 							var name = childSnapshot.val().name;
 							var source = document.createElement('div');
 							source.innerHTML = name;
 							var container = document.getElementById('sources');
 							container.appendChild(source);
+							counter++;
 						});
+						var sourceCount = document.getElementById('num-sources');
+						sourceCount.innerHTML = counter + ' sources';
 					});
 				}
 			}

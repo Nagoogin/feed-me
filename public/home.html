@@ -23,15 +23,16 @@
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 
 		<!-- MARK: Font Awesome -->
-        <link rel="stylesheet" href="css/font-awesome-4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/font-awesome-4.7.0/css/font-awesome.min.css">
 
-        <!-- MARK: Google Fonts -->
-        <link href='https://fonts.googleapis.com/css?family=Vollkorn|Roboto+Condensed' rel='stylesheet' type='text/css'>
+    <!-- MARK: Google Fonts -->
+    <link href='https://fonts.googleapis.com/css?family=Vollkorn|Roboto+Condensed|Space+Mono' rel='stylesheet' type='text/css'>
 
-        <!-- MARK: main.css -->
-        <link href="css/main.css" rel="stylesheet" type="text/css">
+    <!-- MARK: CSS Styles -->
+    <link href="css/main.css" rel="stylesheet" type="text/css">
+		<link href="css/font-awesome-animation.min.css" rel="stylesheet" type="text/css">
 
-        <!-- News API Key: e7f157684e404d84aa814fa4691fc77e -->
+    <!-- News API Key: e7f157684e404d84aa814fa4691fc77e -->
 	</head>
 	<style>
 		#profile-link {
@@ -112,6 +113,9 @@
 			padding: 5px 0 0 10px;
 		}
 
+		.empty-message {
+			margin: 100px 50px 100px 50px;
+		}
 
 	</style>
 	<body>
@@ -212,8 +216,8 @@
 						var user = firebase.auth().currentUser;
 						if (user) {
 							profile.innerHTML = user.email + " <span class=\"caret\"></span>";
+							getNews();
 						}
-						getNews();
 					} else {
 						// User is not signed in, segue to login page
 						window.location = 'index.html';
@@ -232,9 +236,24 @@
 						snapshot.forEach(function(childSnapshot) {
 							news.push(childSnapshot.val().url);
 						});
-						loadNews(news);
+						if (news.length == 0) {
+							loadEmpty();
+						} else {
+							loadNews(news);
+						}
 					});
 				}
+			}
+
+			function loadEmpty() {
+				var empty = document.createElement('div');
+				empty.className = 'empty-message space bold';
+				empty.style.color = '#878787';
+				empty.style.textAlign = 'center';
+				empty.innerHTML = '<h2>Looks like you haven\'t followed any news sources yet!</h2>' +
+				'<br><i class="fa fa-newspaper-o fa-5x faa-float animated"></i><br>' +
+				'<h2>Add some sources in the configure page';
+				document.getElementById('main-container').appendChild(empty);
 			}
 
 			function loadNews(news) {
@@ -311,6 +330,8 @@
 
 			function stripDashes(str) {
 				var ret = "";
+				if (str == 'cnn') { return 'CNN'; }
+				if (str == 'ign') { return 'IGN'; }
 				for (var i = 0; i < str.length; i++) {
 					if (str[i] != '-') {
 						ret += str[i];
