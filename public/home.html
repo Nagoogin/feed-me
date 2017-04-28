@@ -1,12 +1,18 @@
 <!doctype html>
 <html>
 	<head>
+		<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+		<script>
+		  (adsbygoogle = window.adsbygoogle || []).push({
+		    google_ad_client: "ca-pub-9811239678115448",
+		    enable_page_level_ads: true
+		  });
+		</script>
 		<meta charset="utf-8">
 	    <meta http-equiv="X-UA-Compatible" content="IE=edge">
 	    <meta name="viewport" content="width=device-width, initial-scale=1">
 
 		<title>Feed Me</title>
-
 		<!-- MARK: jQuery -->
 		<script src="https://code.jquery.com/jquery-3.1.1.min.js"
   		integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
@@ -29,95 +35,12 @@
     <link href='https://fonts.googleapis.com/css?family=Vollkorn|Roboto+Condensed|Space+Mono' rel='stylesheet' type='text/css'>
 
     <!-- MARK: CSS Styles -->
-    <link href="css/main.css" rel="stylesheet" type="text/css">
-		<link href="css/font-awesome-animation.min.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="css/main.css">
+		<link rel="stylesheet" href="css/home.css">
+		<link rel="stylesheet" href="css/font-awesome-animation.min.css">
 
     <!-- News API Key: e7f157684e404d84aa814fa4691fc77e -->
 	</head>
-	<style>
-		#profile-link {
-			background-color: transparent;
-		}
-
-		#profile-link:hover {
-			color: #fff;
-		}
-
-		#profile-link:active {
-			color: #fff;
-		}
-
-		#profile-link:focus {
-			color: #fff;
-		}
-
-		#main-container {
-			margin: 0 auto;
-			margin-bottom: 100px;
-			margin-top: 25px;
-			width: 90%;
-		}
-
-		#col-1 {
-			/*height: 80vh;
-			overflow: auto;
-			padding: 0 10px 0 10px;*/
-		}
-
-		.article {
-			border: 1px solid #e0e0e0;
-			border-radius: 3px;
-			background-color: #fff;
-			margin: 0 10px 20px 0;
-		}
-
-		.article a {
-			color: #4ab086;
-		}
-
-		.article a:hover {
-			color: #198763;
-		}
-
-		.img-container {
-			border-top-left-radius: 3px;
-			border-top-right-radius: 3px;
-		}
-
-		.img-container img {
-			border-top-left-radius: 3px;
-			border-top-right-radius: 3px;
-		}
-
-		.img-container img:hover {
-			opacity: 0.9;
-		}
-
-		.info {
-			background-color: #f6f7f9;
-			border-bottom-left-radius: 3px;
-			border-bottom-right-radius: 3px;
-			border-top: 1px solid #ededed;
-			padding: 10px;
-		}
-
-		.description {
-			background-color: #f6f7f9;
-			padding-bottom: 5px;
-		}
-
-		.source {
-			border-top: 1px solid #ededed;
-			margin: -10px;
-			margin-bottom: -15px;
-			padding: 5px 0 0 10px;
-		}
-
-		.empty-message {
-			margin: 100px 50px 100px 50px;
-		}
-
-	</style>
 	<body>
 		<nav class="navbar navbar-dafault green-bg">
 			<div class="container-fluid">
@@ -129,7 +52,7 @@
 						<span class="icon-bar"></span>
 					</button>
 					<a class="navbar-brand" href="home.html">
-						<i class="fa fa-play-circle white"></i>
+						<i class="fa fa-play-circle white faa-spin animated-hover"></i>
 						<span class="white robot">FEED ME</span>
 					</a>
 				</div>
@@ -168,7 +91,7 @@
 		<footer>
 			<div id="copyright">
 				<p class="robot small gray">Powered by <a href="http://NewsAPI.org" target="_blank">News API</a></p>
-				<p class="robot small gray">&copy; 2017 Feed Me, Inc.</p>
+				<p class="robot small gray">&copy; 2017 Feed Me</p>
 			</div>
 		</footer>
 		<!-- MARK: Firebase .js scripts -->
@@ -330,14 +253,31 @@
 
 			function stripDashes(str) {
 				var ret = "";
-				if (str == 'cnn') { return 'CNN'; }
-				if (str == 'ign') { return 'IGN'; }
-				for (var i = 0; i < str.length; i++) {
-					if (str[i] != '-') {
-						ret += str[i];
-					} else {
-						ret += ' ';
-					}
+				switch (str) {
+					case 'cnn':
+						ret = 'CNN';
+						break;
+					case 'ign':
+						ret = 'IGN';
+						break;
+					case 'bbc-news':
+						ret = 'BBC News';
+						break;
+					case 'cnbc':
+						ret = 'CNBC';
+						break;
+					case 'nfl-news':
+						ret = 'NFL News';
+						break;
+					default:
+						for (var i = 0; i < str.length; i++) {
+							if (str[i] != '-') {
+								ret += str[i];
+							} else {
+								ret += ' ';
+							}
+						}
+						break;
 				}
 				return ret;
 			}

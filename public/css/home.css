@@ -1,0 +1,81 @@
+#profile-link {
+  background-color: transparent;
+}
+
+#profile-link:hover {
+  color: #fff;
+}
+
+#profile-link:active {
+  color: #fff;
+}
+
+#profile-link:focus {
+  color: #fff;
+}
+
+#main-container {
+  margin: 0 auto;
+  margin-bottom: 100px;
+  margin-top: 25px;
+  width: 90%;
+}
+
+#col-1 {
+  /*height: 80vh;
+  overflow: auto;
+  padding: 0 10px 0 10px;*/
+}
+
+.article {
+  border: 1px solid #e0e0e0;
+  border-radius: 3px;
+  background-color: #fff;
+  margin: 0 10px 20px 0;
+}
+
+.article a {
+  color: #4ab086;
+}
+
+.article a:hover {
+  color: #198763;
+}
+
+.img-container {
+  border-top-left-radius: 3px;
+  border-top-right-radius: 3px;
+}
+
+.img-container img {
+  border-top-left-radius: 3px;
+  border-top-right-radius: 3px;
+}
+
+.img-container img:hover {
+  opacity: 0.9;
+}
+
+.info {
+  background-color: #f6f7f9;
+  border-bottom-left-radius: 3px;
+  border-bottom-right-radius: 3px;
+  border-top: 1px solid #ededed;
+  padding: 10px;
+}
+
+.description {
+  background-color: #f6f7f9;
+  padding-bottom: 5px;
+}
+
+.source {
+  border-top: 1px solid #ededed;
+  margin: -10px;
+  margin-bottom: -15px;
+  padding: 5px 0 0 10px;
+}
+
+.empty-message {
+  margin: 100px 50px 100px 50px;
+}

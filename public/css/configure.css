@@ -1,0 +1,47 @@
+#profile-link {
+  background-color: transparent;
+}
+
+#profile-link:hover {
+  color: #FFF;
+}
+
+#profile-link:active {
+  color: #FFF;
+}
+
+#profile-link:focus {
+  color: #FFF;
+}
+
+.source {
+  color: #FFF;
+  border-radius: 4px;
+  display: inline-block;
+  font-family: 'Roboto Condensed', sans-serif;
+  font-size: 1.5em;
+  font-weight: bold;
+  padding: 12px;
+  margin: 7px;
+  width: auto;
+
+  -webkit-user-select: none; /* Chrome/Safari */
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none; /* IE10+ */
+
+  /* Rules below not implemented in browsers yet */
+  -o-user-select: none;
+  user-select: none;
+}
+
+.source:hover {
+  cursor: pointer;
+}
+
+#main-container {
+  margin: 50px 50px 100px 50px;
+}
+
+#divider {
+  margin-top: 25px;
+}

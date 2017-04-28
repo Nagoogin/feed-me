@@ -1,0 +1,46 @@
+#profile-link {
+  background-color: transparent;
+}
+
+#profile-link:hover {
+  color: #FFF;
+}
+
+#profile-link:active {
+  color: #FFF;
+}
+
+#profile-link:focus {
+  color: #FFF;
+}
+
+#main-container {
+  background-color: #FFF;
+  border-radius: 3px;
+  border: 1px solid #D3D3D3;
+  margin: 0 auto;
+  margin-bottom: 100px;
+  margin-top: 50px;
+  width: 95%;
+
+}
+
+#top {
+  background-color: #E9EBEE;
+  border-bottom: 1px solid #D3D3D3;
+  border-top-left-radius: 3px;
+  border-top-right-radius: 3px;
+  height: 40px;
+}
+
+#profile-container {
+  padding: 25px 25px 50px 25px;
+}
+
+.entry {
+  color: #0F513B;
+  border-right: 1px solid #D3D3D3;
+  margin-left: 15px;
+  margin-top: 10px;
+  padding-right: 15px;
+}
