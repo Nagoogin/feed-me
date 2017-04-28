@@ -1,0 +1,71 @@
+.container {
+  margin-top: 50px;
+}
+
+#main {
+  margin-bottom: 50px;
+}
+
+#main-container {
+  margin: 0 auto;
+}
+
+#form-container {
+  text-align: center;
+}
+
+#signup-form {
+  width: 100%;
+  text-align: center;
+}
+
+#disclaimer {
+  text-align: left;
+}
+
+#info {
+  padding-top: 50px;
+  text-align: center;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+#signup-button {
+  margin-top: 15px;
+  width: 100%;
+}
+
+input {
+  font-family: 'Roboto Condensed', sans-serif;
+}
+
+/*    .my-btn {
+  background: #4ab086;
+  border-color: #4ab086;
+}
+
+.my-btn:hover {
+  background: #198763;
+  border-color: #198763;
+}
+
+.my-btn:visited {
+  background: #4ab086;
+  border-color: #4ab086;
+}
+
+.my-btn:focus {
+  background: #4ab086;
+  border-color: #4ab086;
+}
+
+.my-btn:active {
+  background: #4ab086;
+  border-color: #4ab086;
+}*/
+
+#form-title {
+  margin-bottom: 20px;
+}

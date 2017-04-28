@@ -18,7 +18,7 @@ function toggleLogIn() {
   // Log in with email and password
   firebase.auth().signInWithEmailAndPassword(email, password).then(function(user) {
     // Upon completion of promise, segue to home
-    window.location = 'home.html';
+    window.location = 'index.html';
   }).catch(function(error) {
     // Handle errors
     var errorCode = error.code;
@@ -69,7 +69,7 @@ function handleSignUp() {
     //   uid: user.uid
     // });
     // segue to home
-    window.location = 'home.html';
+    window.location = 'index.html';
   }).catch(function(error) {
     var errorCode = error.code;
     var errorMessage = error.message;
@@ -120,7 +120,7 @@ function sendPasswordReset() {
 
 
 /**
- * Handles segue to the home page and setting up event listeners 
+ * Handles segue to the home page and setting up event listeners
  */
 function initApp() {
 
