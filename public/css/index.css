@@ -79,3 +79,28 @@
 .empty-message {
   margin: 100px 50px 100px 50px;
 }
+
+.news-reel {
+  height: 40px;
+}
+
+.navbar {
+  margin-bottom: 0;
+}
+
+#reel-text {
+  background-color: #2E2E2E;
+  color: #FFD700;
+  height: 40px;
+  padding-top: 9px;
+  width: 100%;
+}
+
+#reel-text a {
+  color: #FFD700;
+  text-decoration: none;
+}
+
+#reel-text a:hover {
+  cursor: pointer;
+}

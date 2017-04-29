@@ -68,11 +68,14 @@ footer {
 	font-family: 'Space Mono', serif;
 }
 
+.orbitron {
+	font-family: 'Orbitron', sans-serif;
+}
+
 /* MARK: Font Styles */
 .bold {
 	font-weight: bold;
 }
-
 
 
 /* MARK: Font Sizes */

@@ -32,7 +32,7 @@
     <link rel="stylesheet" href="css/font-awesome-4.7.0/css/font-awesome.min.css">
 
     <!-- MARK: Google Fonts -->
-    <link href='https://fonts.googleapis.com/css?family=Vollkorn|Roboto+Condensed|Space+Mono' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Vollkorn|Roboto+Condensed|Space+Mono|Orbitron' rel='stylesheet' type='text/css'>
 
     <!-- MARK: CSS Styles -->
     <link rel="stylesheet" href="css/main.css">
@@ -52,7 +52,7 @@
 							<span class="icon-bar"></span>
 							<span class="icon-bar"></span>
 						</button>
-						<a class="navbar-brand" href="home.html">
+						<a class="navbar-brand" href="#">
 							<i class="fa fa-play-circle white faa-spin animated-hover"></i>
 							<span class="white robot">FEED ME</span>
 						</a>
@@ -74,6 +74,7 @@
 					</div><!--/.navbar-collapse -->
 				</div>
 			</nav>
+			<marquee id="reel-text" class="space"></marquee>
 			<div class="container">
 				<main id="main">
 					<div class="row" id="main-container">
@@ -197,7 +198,6 @@
 									var article = document.createElement('div');
 									article.className = 'article';
 									document.getElementById('col-' + k).appendChild(article);
-									console.log(k);
 									k++;
 									if (k == 4) { k = 1; }
 									// articles.push(article);
@@ -238,6 +238,13 @@
 									source.innerHTML = '<p class=\"font-sm robot green-dk text-capitalize\">' +
 									stripDashes(response.source) + '</p>';
 									info.appendChild(source);
+
+									var reelText = document.getElementById('reel-text').innerHTML;
+									var reel = document.getElementById('reel-text');
+									reel.innerHTML = reelText + ' <strong><span class=\"text-capitalize\">' +
+									stripDashes(response.source) + '</span></strong>: ' +
+									'<a href=\"' + response.articles[j].url + '\" target=\"_blank\">' +
+									response.articles[j].title + '</a> | ';
 								}
 
 							}
