@@ -73,7 +73,7 @@
   border-top: 1px solid #ededed;
   margin: -10px;
   margin-bottom: -15px;
-  padding: 5px 0 0 10px;
+  padding: 2px 7px 9px 10px;
 }
 
 .empty-message {
@@ -94,6 +94,7 @@
   height: 40px;
   padding-top: 9px;
   width: 100%;
+  z-index: 100;
 }
 
 #reel-text a {
@@ -103,4 +104,9 @@
 
 #reel-text a:hover {
   cursor: pointer;
+}
+
+.stick {
+    position: fixed;
+    top: 0;
 }
