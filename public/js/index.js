@@ -58,7 +58,10 @@ function loadEmpty() {
   empty.innerHTML = '<h2>Looks like you haven\'t followed any news sources yet!</h2>' +
   '<br><i class="fa fa-newspaper-o fa-5x faa-float animated"></i><br>' +
   '<h2>Add some sources in the configure page';
-  document.getElementById('main-container').appendChild(empty);
+  console.log(document.getElementById('main-container').childNodes.length);
+  if (document.getElementById('main-container').childNodes.length == 7) {
+    document.getElementById('main-container').appendChild(empty);
+  }
 }
 
 // TODO: Change this to jQuery AJAX call
