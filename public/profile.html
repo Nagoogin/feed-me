@@ -60,6 +60,8 @@
 								<li><a href="configure.html">Configure</a></li>
 								<li role="separator" class="divider"></li>
 								<li><a href="#">Settings</a></li>
+								<li><a href="#">Site Policy</a></li>
+								<li role="separator" class="divider"></li>
 								<li><a id="logout-link" href="#">Log out</a></li>
 							</ul>
 						</li>
@@ -95,18 +97,10 @@
 			</div>
 		</footer>
 
+		<!-- MARK: Firebase .js scripts -->
 		<script src="https://www.gstatic.com/firebasejs/3.7.3/firebase.js"></script>
+		<script src="js/firebase.js"></script>
 		<script>
-			// Initialize Firebase
-			var config = {
-				apiKey: "AIzaSyBCL6swSBPzGvrRwA-AL8C-y81jkkMuq3g",
-				authDomain: "feed-me-cc940.firebaseapp.com",
-				databaseURL: "https://feed-me-cc940.firebaseio.com",
-				storageBucket: "feed-me-cc940.appspot.com",
-				messagingSenderId: "287104040203"
-			};
-			firebase.initializeApp(config);
-
 			// Call initApp() upon the window loading
 			window.onload = function() {
 				initHome();

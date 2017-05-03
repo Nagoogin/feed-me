@@ -32,6 +32,9 @@ function initHome() {
   document.getElementById('logout-link').addEventListener('click', handleLogOut, false);
 }
 
+/**
+ * 
+ */
 function getNews() {
   var news = [];
   var user = firebase.auth().currentUser;
@@ -49,6 +52,7 @@ function getNews() {
     });
   }
 }
+
 
 function loadEmpty() {
   var empty = document.createElement('div');
