@@ -15,6 +15,14 @@ body {
 	border-bottom: 1px sold #0F513B;
 }
 
+.dropdown-menu > li > a:hover {
+		/*border-top: 1px solid #878787;
+		border-bottom: 1px solid #878787;*/
+    background-color: #4ab086;
+    background-image: none;
+		color: #FFF;
+}
+
 
 
 /* MARK: Footer styles */

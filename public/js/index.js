@@ -33,7 +33,7 @@ function initHome() {
 }
 
 /**
- * 
+ *
  */
 function getNews() {
   var news = [];
@@ -53,7 +53,9 @@ function getNews() {
   }
 }
 
-
+/**
+ * Loads the empty news feed message and animated newspaper icon
+ */
 function loadEmpty() {
   var empty = document.createElement('div');
   empty.className = 'empty-message space bold';
