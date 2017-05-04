@@ -45,3 +45,21 @@
 #divider {
   margin-top: 25px;
 }
+
+#bar {
+  background-color: #E9EBEE;
+  border: 1px solid #D3D3D3;
+  border-radius: 4px;
+  height: 65px;
+  margin-top: 15px;
+  width: 100%
+}
+
+#saved {
+  background-color: #E9EBEE;
+  border: 1px solid #D3D3D3;
+  border-radius: 4px;
+  height: 100px;
+  margin-top: 25px;
+  width: 100%;
+}

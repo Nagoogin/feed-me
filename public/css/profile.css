@@ -37,10 +37,24 @@
   padding: 25px 25px 50px 25px;
 }
 
-.entry {
+.entry-right {
   color: #0F513B;
   border-right: 1px solid #D3D3D3;
   margin-left: 15px;
   margin-top: 10px;
   padding-right: 15px;
+}
+
+.entry-left {
+  color: #0F513B;
+  border-left: 1px solid #D3D3D3;
+  margin-left: 15px;
+  margin-top: 10px;
+  padding-left: 15px;
+}
+
+#news-icon {
+  margin-left: 15px;
+  margin-top: 10px;
+  margin-right: -10px;
 }

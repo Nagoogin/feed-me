@@ -78,9 +78,27 @@
 		<main id="main">
 			<div class="row" id="main-container">
 				<h1 class="robot font-3x bold" style="margin-left: 10px;">Configure your media feed</h2>
-				<h3 class="robot font-xlg gray" style="margin-left: 10px;">Click the news sources that you want to follow</h4>
+				<h3 class="robot font-xlg gray" style="margin-left: 10px;">Select from your saved configurations or create a new one!</h4>
+				<div id="saved" class="shadow">
+				</div>
+				<div id="bar" class="shadow">
+					<div class="col-lg-6">
+						<div class="input-group">
+				      <input type="text" class="form-control" placeholder="Search for news sources" style="margin-top: 15px;">
+				      <span class="input-group-btn">
+				        <button class="btn btn-default" type="button" style="margin-top: 15px;">Add Source</button>
+				      </span>
+			    	</div><!-- /input-group -->
+					</div>
+					<div class="col-lg-2">
+					</div>
+					<div class="col-lg-4">
+						<button id="clear" onclick="clear()"class="btn btn-danger" type="button" style="margin-top: 15px; float: right;">Clear</button>
+						<button id="save-new" onclick="saveNew()" class="btn btn-success" type="button" style="margin-top: 15px; float: right; margin-right: 10px;">Save New</button>
+					</div>
+				</div>
 				<div id="divider"></div>
-				<div id="sources-list"></div>
+				<div id="sources-list" class="shadow box pad-15"></div>
 			</div>
 		</main>
 	</div>
@@ -141,6 +159,12 @@
 		function loadSources(news) {
 			// Sort the sources array
 			// sources.sort((a, b) => a.name.localeCompare(b.name));
+			// if (news.length == 0) {
+			// 	var emptyAlert = document.createElement('div');
+			// 	emptyAlert.innerHTML = '<button type="button" class="close"' +
+			// 	'data-dismiss="alert" aria-label="Close">You\'re feed is empty!</button>';
+			// 	document.getElementById('main-container').appendChild(emptyAlert);
+			// }
 			for (var i = 0; i < sources.length; i++) {
 				var source = document.createElement('div');
 				source.className = 'source hvr-float-shadow';
@@ -239,6 +263,10 @@
 					loadSources(news);
 				});
 			}
+		}
+
+		function clear() {
+
 		}
 	</script>
 </body>
