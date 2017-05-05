@@ -60,14 +60,6 @@ function handleSignUp() {
 
   // Sign up with email and password
   firebase.auth().createUserWithEmailAndPassword(email, password).then(function(user) {
-    // firebase.database().ref().child("users/" + user.uid).set({
-    //   first_name: fname,
-    //   last_name: lname,
-    //   gender: gender,
-    //   email: email,
-    //   username: username,
-    //   uid: user.uid
-    // });
     // segue to home
     window.location = 'index.html';
   }).catch(function(error) {

@@ -101,7 +101,7 @@
 
 							<!-- Modal -->
 							<div id="myModal" class="modal fade" role="dialog">
-							  <div class="modal-dialog modal-sm">
+							  <div class="modal-dialog">
 
 							    <!-- Modal content-->
 							    <div class="modal-content">
@@ -111,6 +111,7 @@
 							      </div>
 							      <div class="modal-body">
 											<input type="text" class="form-control" placeholder="Configuration name" />
+											<div id="modal-sources"></div>
 							      </div>
 							      <div class="modal-footer">
 							        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
@@ -207,7 +208,7 @@
 				if (alreadySelected) {
 					source.style.backgroundColor = 'orange';
 				} else {
-					var index = Math.round(Math.random()*3);
+					var index = Math.round(Math.random() * 3);
 					source.style.backgroundColor = greens[index];
 				}
 				source.innerHTML = sources[i].name;
@@ -222,7 +223,7 @@
 		 */
 		$(document).on('click', '.source', function(){
 			if ($(this).css('background-color') == 'rgb(255, 165, 0)') {
-				var index = Math.round(Math.random()*3);
+				var index = Math.round(Math.random() * 3);
 				$(this).css('background-color', greens[index]);
 				removeSource($(this).text());
 			} else {
@@ -296,7 +297,20 @@
 		 *
 		 */
 		function saveNew() {
-
+			var selected = [];
+			for (var i = 0; i < newsSources.length; i++) {
+				if (newsSources[i].style.backgroundColor == 'orange') {
+					selected.push(newsSources[i].innerHTML);
+				}
+			}
+			var modal = document.getElementById('modal-sources');
+			for (var i = 0; i < selected.length; i++) {
+				var source = document.createElement('div');
+				source.className = 'source';
+				source.style.backgroundColor = 'orange';
+				source.innerHTML = selected[i];
+				modal.appendChild(source);
+			}
 		}
 
 		/**
@@ -313,7 +327,7 @@
 			for (var i = 0; i < newsSources.length; i++) {
 				// If the source's background color is orange, change to green
 				if (newsSources[i].style.backgroundColor == 'orange') {
-					var index = Math.round(Math.random()*3);
+					var index = Math.round(Math.random() * 3);
 					newsSources[i].style.backgroundColor = greens[index];
 				}
 			}
