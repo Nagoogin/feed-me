@@ -187,6 +187,13 @@ footer {
 
 
 
+/* MARK: Button */
+.btn {
+    font-family: 'Roboto Condensed', sans-serif;
+}
+
+
+
 /* MARK: CSS Transitions */
 /* Buzz */
 @-webkit-keyframes hvr-buzz {
