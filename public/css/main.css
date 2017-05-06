@@ -93,8 +93,12 @@ footer {
 	padding: 20px;
 }
 
-.padd-25 {
+.pad-25 {
 	padding: 25px;
+}
+
+.pad-35 {
+	padding: 35px;
 }
 
 
@@ -111,6 +115,20 @@ footer {
 .orbitron {
 	font-family: 'Orbitron', sans-serif;
 }
+
+.joseph {
+	font-family: 'Josefin Sans', sans-serif;
+}
+
+.oxygen {
+	font-family: 'Oxygen', sans-serif;
+}
+
+.helvet {
+	font-family: 'Helvetica Neue', sans-serif;
+}
+
+
 
 /* MARK: Font Styles */
 .bold {
