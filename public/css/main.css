@@ -12,7 +12,6 @@ body {
 /* MARK: Navbar styles */
 .navbar {
 	border-radius: 0px;
-	border-bottom: 1px sold #0F513B;
 }
 
 .dropdown-menu > li > a:hover {
@@ -60,6 +59,10 @@ footer {
 
 .green-bg {
 	background-color: #4ab086;
+}
+
+.red-bg {
+	background-color: #FF3030;
 }
 
 /* MARK: Shadows */
