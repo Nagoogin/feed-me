@@ -239,6 +239,26 @@
 			}
 		});
 
+		$(document).on('click', '.config', function() {
+			var user = firebase.auth().currentUser;
+			var selected = [];
+			if (user) {
+				console.log($(this).text());
+				var ref = firebase.database().ref('/users/' + user.uid + '/configurations/' +
+				$(this).text());
+				ref.once('value', function(snapshot) {
+					snapshot.forEach(function(childSnapshot) {
+						selected.push(childSnapshot.val().name);
+						console.log(childSnapshot.val().name);
+					});
+					clearSources();
+					for (var i = 0; i < selected.length; i++) {
+						saveSource(selected[i], '/news');
+					}
+				});
+			}
+		});
+
 		/**
 		 * Saves a source to Firebase with path
 		 */

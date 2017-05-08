@@ -1,3 +1,35 @@
+$(document).on('keydown','#login-password', function(e) {
+  if (e.keyCode == 13) {
+    toggleLogIn();
+  }
+});
+
+$(document).on('keydown','#login-email', function(e) {
+  if (e.keyCode == 13) {
+    toggleLogIn();
+  }
+});
+
+$(document).on('keydown','#signup-email', function(e) {
+  if (e.keyCode == 13) {
+    handleSignUp();
+  }
+});
+
+$(document).on('keydown','#signup-password', function(e) {
+  if (e.keyCode == 13) {
+    handleSignUp();
+  }
+});
+
+$(document).on('keydown','#repeated-password', function(e) {
+  if (e.keyCode == 13) {
+    handleSignUp();
+  }
+});
+
+
+
 /**
  * Handles the sign in button press
  */
