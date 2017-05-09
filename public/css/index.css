@@ -1,3 +1,7 @@
+#page {
+  position:relative;
+}
+
 #profile-link {
   background-color: transparent;
 }
@@ -16,7 +20,6 @@
 
 #main-container {
   margin: 0 auto;
-  margin-bottom: 100px;
   margin-top: 25px;
   width: 90%;
 }
@@ -123,8 +126,9 @@
   text-align: center;
   position: fixed;
   right: 50px;
-  bottom: 100px;
+  bottom: 135px;
   display: table;
+  z-index: 1000;
 }
 
 #arrow-container:hover {
@@ -146,8 +150,9 @@
   text-align: center;
   position: fixed;
   right: 50px;
-  bottom: 30px;
+  bottom: 75px;
   display: table;
+  z-index: 1000;
 }
 
 #cog-container:hover {
@@ -162,3 +167,7 @@
 #grid-container { margin: 0 auto; }
 .grid-item { width: 300px; margin-bottom: 25px; }
 /*.grid-item img { width:100%; }*/
+
+#cog-shell {
+  display: none;
+}

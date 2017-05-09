@@ -51,6 +51,7 @@ function getNews() {
       if (news.length == 0) {
         loadEmpty();
       } else {
+        document.getElementById('cog-shell').style.display = 'block';
         loadNews(news);
       }
     });
@@ -67,7 +68,8 @@ function loadEmpty() {
   empty.style.textAlign = 'center';
   empty.innerHTML = '<h2>Looks like you haven\'t followed any news sources yet!</h2>' +
   '<br><i class="fa fa-newspaper-o fa-5x faa-float animated"></i><br>' +
-  '<h2>Add some sources in the configure page';
+  '<h2>Add some sources in the configure page</h2><br>' +
+  '<a href="configure.html"><button class="btn btn-info btn-lg">Configure your feed</button></a>';
   console.log(document.getElementById('grid-container').childNodes.length);
   if (document.getElementById('grid-container').childNodes.length == 1) {
     document.getElementById('grid-container').appendChild(empty);
@@ -75,6 +77,9 @@ function loadEmpty() {
   }
 }
 
+/**
+ *
+ */
 function loadNews(news) {
   var $grid = $('.grid').masonry({
     // options...
@@ -93,7 +98,6 @@ function loadNews(news) {
         article.className = 'article grid-item';
         var timestamp = response.articles[j].publishedAt;
         if (timestamp == null) { timestamp = '2015-03-17'}
-        console.log(timestamp);
 
         if (response.articles[j].urlToImage != null) {
           var container = document.createElement('div');
@@ -121,8 +125,13 @@ function loadNews(news) {
 
         var description = document.createElement('div');
         description.className = "description";
-        description.innerHTML = '<p class=\"font-sm robot gray\">' +
-        response.articles[j].description + '.</p>';
+        var descriptionText = response.articles[j].description;
+        if (descriptionText) {
+          description.innerHTML = '<p class=\"font-sm robot gray\">' +
+          response.articles[j].description + '.</p>';
+        } else {
+          description.innerHTML = '<br/>'
+        }
         info.appendChild(description);
 
         var source = document.createElement('div');
@@ -153,7 +162,7 @@ function loadNews(news) {
   $(document).ajaxStop(function () {
       // 0 === $.active
       articles.sort(function(a,b) {
-        return new Date(a.time).getTime() - new Date(b.time).getTime()
+        return new Date(b.time).getTime() - new Date(a.time).getTime()
       });
       var sortedArticles = [];
       for (var i = 0; i < articles.length; i++) {

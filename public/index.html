@@ -8,6 +8,7 @@
 		    enable_page_level_ads: true
 		  });
 		</script> -->
+		<link href="favicon.ico" rel="icon" type="image/x-icon" />
 		<meta charset="utf-8">
 	    <meta http-equiv="X-UA-Compatible" content="IE=edge">
 	    <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -62,7 +63,6 @@
 							<li class="dropdown">
 								<a href="#" id="profile-link" class="dropdown-toggle robot white" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"></a>
 								<ul class="dropdown-menu robot">
-									<li><a href="profile.html">View Profile</a></li>
 									<li><a href="#">View Feed</a></li>
 									<li><a href="configure.html">Configure</a></li>
 									<li role="separator" class="divider"></li>
@@ -92,11 +92,13 @@
 					<i id="arrow" class="fa fa-arrow-up fa-lg"></i>
 				</div>
 			</div>
-			<a href="configure.html" >
-				<div id="cog-container" class="shadow gray" data-toggle="tooltip" data-placement="top" title="Configure">
-					<i id="cog" class="fa fa-cog fa-lg"></i>
-				</div>
-			</a>
+			<div id="cog-shell">
+				<a href="configure.html" >
+					<div id="cog-container" class="shadow gray" data-toggle="tooltip" data-placement="top" title="Configure">
+						<i id="cog" class="fa fa-cog fa-lg"></i>
+					</div>
+				</a>
+			</div>
 			<footer>
 				<div id="copyright">
 					<p class="robot small gray">Powered by <a href="http://NewsAPI.org" target="_blank">News API</a></p>

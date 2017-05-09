@@ -125,3 +125,7 @@
   border-bottom-left-radius: 3px;
   border-bottom-right-radius: 3px;
 }
+
+#edit-button {
+  margin-top: -5px;
+}

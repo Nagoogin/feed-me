@@ -26,12 +26,15 @@ body {
 
 /* MARK: Footer styles */
 footer {
+	position:absolute;
+	width: 100%;
 	border-top: 1px solid #d3d3d3;
 }
 
 #copyright {
-	padding: 15px 0 10px 0;
+	padding: 10px 0 5px 0;
 	text-align: center;
+	margin: 0;
 }
 
 
