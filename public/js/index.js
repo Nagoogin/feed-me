@@ -29,7 +29,11 @@ function initHome() {
     }
   });
 
-  document.getElementById('logout-link').addEventListener('click', handleLogOut, false);
+  var logoutLink = document.getElementById('logout-link');
+  logoutLink.addEventListener('click', handleLogOut, false);
+
+  var arrow = document.getElementById('arrow-container');
+  arrow.addEventListener('click', scrollToTop, false);
 }
 
 /**
@@ -64,9 +68,10 @@ function loadEmpty() {
   empty.innerHTML = '<h2>Looks like you haven\'t followed any news sources yet!</h2>' +
   '<br><i class="fa fa-newspaper-o fa-5x faa-float animated"></i><br>' +
   '<h2>Add some sources in the configure page';
-  console.log(document.getElementById('main-container').childNodes.length);
-  if (document.getElementById('main-container').childNodes.length == 7) {
-    document.getElementById('main-container').appendChild(empty);
+  console.log(document.getElementById('grid-container').childNodes.length);
+  if (document.getElementById('grid-container').childNodes.length == 1) {
+    document.getElementById('grid-container').appendChild(empty);
+    document.getElementById('reel-text').style.display = 'none';
   }
 }
 
@@ -86,12 +91,10 @@ function loadNews(news) {
       for (var j = 0; j < response.articles.length; j++) {
         var article = document.createElement('div');
         article.className = 'article grid-item';
-        // document.getElementById('col-' + k).appendChild(article);
-        // k++;
-        // if (k == 4) { k = 1; }
-        // articles.push(article);
+        var timestamp = response.articles[j].publishedAt;
+        if (timestamp == null) { timestamp = '2015-03-17'}
+        console.log(timestamp);
 
-        // alert(response.articles[i].urlToImage == null);
         if (response.articles[j].urlToImage != null) {
           var container = document.createElement('div');
           container.className = 'img-container';
@@ -138,11 +141,10 @@ function loadNews(news) {
         '<a href=\"' + response.articles[j].url + '\" target=\"_blank\">' +
         response.articles[j].title + '</a> | ';
 
-        articles.push(article);
-        // $('.grid').append(article);
-        // $grid.masonry('appended', article);
-
-        // add jQuery object
+        articles.push({
+          'time': timestamp,
+          'article': article
+        });
 
         // TODO: Sort array
       }
@@ -150,88 +152,20 @@ function loadNews(news) {
   }
   $(document).ajaxStop(function () {
       // 0 === $.active
-      var $content = $(articles);
-        $grid.append( $content ).masonry('appended', $content);
-        $grid.imagesLoaded().progress(function() {
-          $grid.masonry('layout');
-        });
+      articles.sort(function(a,b) {
+        return new Date(a.time).getTime() - new Date(b.time).getTime()
+      });
+      var sortedArticles = [];
+      for (var i = 0; i < articles.length; i++) {
+        sortedArticles.push(articles[i].article);
+      }
+      var $content = $(sortedArticles);
+      $grid.append( $content ).masonry('appended', $content);
+      $grid.imagesLoaded().progress(function() {
+        $grid.masonry('layout');
+      });
   });
 }
-
-// // TODO: Change this to jQuery AJAX call
-// function loadNews(news) {
-//   var articles = []
-//   var xhrRequests = new Array();
-//   for (var i = 0; i < news.length; i++) {
-//     (function(i) {
-//       xhrRequests[i] = new XMLHttpRequest();
-//       xhrRequests[i].open('GET', news[i], true);
-//       xhrRequests[i].send();
-//
-//       xhrRequests[i].onreadystatechange = function () {
-//           if (xhrRequests[i].readyState == 4 && xhrRequests[i].status == 200) {
-//           var response = JSON.parse(responseText);
-//           for (var j = 0, k = 1; j < response.articles.length; j++) {
-//             var article = document.createElement('div');
-//             article.className = 'article';
-//             document.getElementById('col-' + k).appendChild(article);
-//             k++;
-//             if (k == 4) { k = 1; }
-//             // articles.push(article);
-//
-//             // alert(response.articles[i].urlToImage == null);
-//             if (response.articles[j].urlToImage != null) {
-//               var container = document.createElement('div');
-//               container.className = 'img-container';
-//               article.appendChild(container);
-//
-//                 var img = document.createElement('div');
-//                 img.className = 'image';
-//                 img.innerHTML = '<a href=\"' + response.articles[j].url +
-//                 '\" target=\"_blank\"><img src=\"' + response.articles[j].urlToImage +
-//                 '\" width=\"100%\"></a>';
-//                 container.appendChild(img);
-//             }
-//
-//             var info = document.createElement('div');
-//             info.className = 'info';
-//             article.appendChild(info);
-//
-//             var title = document.createElement('div');
-//             title.className = 'title';
-//             title.innerHTML = '<a href=\"' + response.articles[j].url +
-//             '\" target=\"_blank\"><p class=\"font-nm bold robot\">' +
-//             response.articles[j].title + '</p></a>';
-//             info.appendChild(title);
-//
-//             var description = document.createElement('div');
-//             description.className = "description";
-//             description.innerHTML = '<p class=\"font-sm robot gray\">' +
-//             response.articles[j].description + '.</p>';
-//             info.appendChild(description);
-//
-//             var source = document.createElement('div');
-//             source.className = "source";
-//             source.innerHTML = '<span class=\"font-sm robot green-dk text-capitalize\">' +
-//             stripDashes(response.source) + '</span>';
-//
-//             // <span style=\"float: right;\" class=\"gray-light\">' +
-//             // '<i class="fa fa-share-square-o"></i></span>';
-//             info.appendChild(source);
-//
-//             var reelText = document.getElementById('reel-text').innerHTML;
-//             var reel = document.getElementById('reel-text');
-//             reel.innerHTML = reelText + ' <strong><span class=\"text-capitalize\">' +
-//             stripDashes(response.source) + '</span></strong>: ' +
-//             '<a href=\"' + response.articles[j].url + '\" target=\"_blank\">' +
-//             response.articles[j].title + '</a> | ';
-//           }
-//
-//         }
-//       };
-//     })(i);
-//   }
-// }
 
 function stripDashes(str) {
   var ret = "";
@@ -322,3 +256,16 @@ $(document).ready(function() {
     }
   });
 });
+
+$(document).scroll(function() {
+  var y = $(this).scrollTop();
+  if (y > 500) {
+    $('#temp-container').fadeIn();
+  } else {
+    $('#temp-container').fadeOut();
+  }
+});
+
+function scrollToTop() {
+  $('html, body').animate({scrollTop: '0px'}, 300);
+}

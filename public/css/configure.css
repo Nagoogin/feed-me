@@ -112,3 +112,16 @@
 
 .config:hover {
   cursor: pointer;
+}
+
+.modal-header {
+  background-color: #E9EBEE;
+  border-top-left-radius: 3px;
+  border-top-right-radius: 3px;
+}
+
+.modal-footer {
+  background-color: #E9EBEE;
+  border-bottom-left-radius: 3px;
+  border-bottom-right-radius: 3px;
+}
