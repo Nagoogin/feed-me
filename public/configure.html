@@ -81,7 +81,9 @@
 	<div class="container">
 		<main id="main">
 			<div class="row" id="main-container">
-				<div id="saved" class="shadow pad-15">
+				<div id="saved-container" class="shadow">
+					<div id="saved-top" class="robot font-lg pad-10">Saved Configurations</div>
+					<div id="saved" class="pad-15"></div>
 				</div>
 				<!-- MARK: Sources -->
 				<div class="shadow box">
@@ -249,15 +251,25 @@
 				ref.once('value', function(snapshot) {
 					snapshot.forEach(function(childSnapshot) {
 						selected.push(childSnapshot.val().name);
-						console.log(childSnapshot.val().name);
 					});
 					clearSources();
 					for (var i = 0; i < selected.length; i++) {
 						saveSource(selected[i], '/news');
 					}
+					updateSources(selected);
 				});
 			}
 		});
+
+		function updateSources(selected) {
+			for (var i = 0; i < newsSources.length; i++) {
+				for (var j = 0; j < selected.length; j++) {
+					if (newsSources[i].innerHTML == selected[j]) {
+						newsSources[i].style.backgroundColor = 'orange';
+					}
+				}
+			}
+		}
 
 		/**
 		 * Saves a source to Firebase with path

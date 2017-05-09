@@ -81,18 +81,17 @@
 			<div class="container">
 				<main id="main">
 					<div class="row" id="main-container">
-						<div class="col-xs-12 col-sm-4 col-lg-4" id="col-1">
-							<!-- MARK: Dynamic web content -->
-						</div>
-						<div class="col-xs-12 col-sm-4 col-lg-4" id="col-2">
-
-						</div>
-						<div class="col-xs-12 col-sm-4 col-lg-4" id="col-3">
+						<div class="grid" id="grid-container">
 
 						</div>
 					</div>
 				</main>
 			</div>
+			<a href="configure.html" >
+				<div id="cog-container" class="shadow gray" data-toggle="tooltip" data-placement="top" title="Configure">
+					<i id="cog" class="fa fa-cog fa-2x faa-spin animated-hover"></i>
+				</div>
+			</a>
 			<footer>
 				<div id="copyright">
 					<p class="robot small gray">Powered by <a href="http://NewsAPI.org" target="_blank">News API</a></p>
@@ -110,6 +109,8 @@
 				initHome();
 			}
 		</script>
+		<script src="js/masonry.pkgd.js"></script>
+		<script src="js/imagesloaded.pkgd.min.js"></script>
     <script src="js/index.js"></script>
 	</body>
 </html>
