@@ -58,6 +58,20 @@ function getNews() {
   }
 }
 
+function addAdverts() {
+  var news = [];
+  var user = firebase.auth().currentUser;
+  if (user) {
+    var ref = firebase.database().ref('/users/' + user.uid + '/news');
+    ref.once('value', function(snapshot) {
+      snapshot.forEach(function(childSnapshot) {
+        news.push(childSnapshot.val().name);
+      });
+
+    });
+  }
+}
+
 /**
  * Loads the empty news feed message and animated newspaper icon
  */
@@ -135,7 +149,7 @@ function loadNews(news) {
         info.appendChild(description);
 
         var source = document.createElement('div');
-        source.className = "source";
+        source.className = 'source';
         source.innerHTML = '<span class=\"font-sm robot green-dk text-capitalize\">' +
         stripDashes(response.source) + '</span>';
 
@@ -167,6 +181,30 @@ function loadNews(news) {
       var sortedArticles = [];
       for (var i = 0; i < articles.length; i++) {
         sortedArticles.push(articles[i].article);
+      }
+      for (var i = 0; i < ads.length; i++) {
+
+        var ad = document.createElement('div');
+        ad.className = 'ad-source grid-item';
+
+        var top = document.createElement('div');
+        top.className = 'ad-top robot';
+        top.innerHTML = 'Advertisement';
+        ad.appendChild(top);
+
+        var body = document.createElement('div');
+        body.className = 'ad-link robot font-nm';
+        body.innerHTML = ads[i];
+        ad.appendChild(body);
+
+        var affil = document.createElement('div');
+        affil.className = 'ad-affil';
+        affil.innerHTML = '<span class=\"font-sm robot green-dk\">Amazon</span>';
+        ad.appendChild(affil);
+
+        var index = Math.round(Math.random() * sortedArticles.length - 1);
+        sortedArticles.splice(index, 0, ad);
+        // sortedArticles.push(ad);
       }
       var $content = $(sortedArticles);
       $grid.append( $content ).masonry('appended', $content);

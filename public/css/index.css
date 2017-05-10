@@ -31,13 +31,52 @@
 }
 
 .article {
-  border: 1px solid #e0e0e0;
+  border: 1px solid #E0E0E0;
   border-radius: 3px;
-  background-color: #fff;
+  background-color: #FFF;
+}
+
+.ad-source {
+  border: 1px solid #E0E0E0;
+  border-radius: 3px;
+  background-color: #F6F7F9;
+}
+
+.ad-top {
+  background-color: #4AB086;
+  border-top-left-radius: 3px;
+  border-top-right-radius: 3px;
+  color: #FFF;
+  padding: 5px 0 5px 10px;
+}
+
+.ad-link {
+  padding: 10px;
+}
+
+.ad-link a {
+  color: #4AB086;
+}
+
+.ad-link:hover {
+  color: #198763;
+}
+
+.ad-affil {
+  border-top: 1px solid #ededed;
+  margin-bottom: -5px;
+  padding: 2px 7px 9px 10px;
+}
+
+.share {
+  position: relative
+  background-color: #FFF;
+  border-radius: 2px;
+  padding: 5px;
 }
 
 .article a {
-  color: #4ab086;
+  color: #4AB086;
 }
 
 .article a:hover {
@@ -59,7 +98,7 @@
 }
 
 .info {
-  background-color: #f6f7f9;
+  background-color: #F6F7F9;
   border-bottom-left-radius: 3px;
   border-bottom-right-radius: 3px;
   border-top: 1px solid #ededed;
@@ -67,7 +106,7 @@
 }
 
 .description {
-  background-color: #f6f7f9;
+  background-color: #F6F7F9;
   padding-bottom: 5px;
 }
 

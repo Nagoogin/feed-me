@@ -73,17 +73,11 @@ WIRTSCHAFTS_WOCHE 		= {name: "Wirtschafts Woche", url: ""};
 
 sources = [ARS_TECHNICA, ASSOCIATED_PRESS, BBC_NEWS, BBC_SPORT, BLOOMBERG, BUSINESS_INSIDER, BUSINESS_INSIDER_UK, BUZZFEED,
 	CNBC, CNN, DAILY_MAIL, ENGADGET, ENTERTAINMENT_WEEKLY, ESPN, ESPN_CRIC_INFO, FINANCIAL_TIMES, FOCUS,
-	FORTUNE, FOUR_FOUR_TWO, FOX_SPORTS, GOOGLE_NEWS, HACKER_NEWS, IGN, INDEPENDENT, MASHABLE, METRO, MIRROR, MTV_NEWS, 
-	NATIONAL_GEOGRAPHIC, NEW_SCIENTIST, NEWSWEEK, NEW_YORK_MAGAZINE, NFL_NEWS, POLYGON, RECODE, 
-	REDDIT_R_ALL, REUTERS, T3N, TALKSPORT, TECHCRUNCH, TECHRADAR, THE_ECONOMIST, THE_HUFFINGTON_POST, 
-	THE_LAD_BIBLE, THE_NEW_YORK_TIMES, THE_NEXT_WEB, THE_SPORT_BIBLE, THE_TELEGRAPH, THE_VERGE, 
+	FORTUNE, FOUR_FOUR_TWO, FOX_SPORTS, GOOGLE_NEWS, HACKER_NEWS, IGN, INDEPENDENT, MASHABLE, METRO, MIRROR, MTV_NEWS,
+	NATIONAL_GEOGRAPHIC, NEW_SCIENTIST, NEWSWEEK, NEW_YORK_MAGAZINE, NFL_NEWS, POLYGON, RECODE,
+	REDDIT_R_ALL, REUTERS, T3N, TALKSPORT, TECHCRUNCH, TECHRADAR, THE_ECONOMIST, THE_HUFFINGTON_POST,
+	THE_LAD_BIBLE, THE_NEW_YORK_TIMES, THE_NEXT_WEB, THE_SPORT_BIBLE, THE_TELEGRAPH, THE_VERGE,
 	THE_WALL_STREET_JOURNAL, THE_WASHINGTON_POST, TIME, USA_TODAY];
-
-// TODO delete these tests
-test1 = {name: "ABC News Au", url: "https://newsapi.org/v1/articles?source=abc-news-au&sortBy=top&apiKey=e7f157684e404d84aa814fa4691fc77e"};
-test2 = {name: "Ars Technica", url: "https://newsapi.org/v1/articles?source=ars-technica&sortBy=top&apiKey=e7f157684e404d84aa814fa4691fc77e"};
-test3 = {name: "Associated Press", url: "https://newsapi.org/v1/articles?source=associated-press&sortBy=top&apiKey=e7f157684e404d84aa814fa4691fc77e"};
-example = [test1, test2, test3];
 
 var greens = ['#6EBF9E', '#53B38C', '#419271', '#74C1A2'];
 
@@ -107,6 +101,10 @@ function shuffle(array) {
     return array;
 }
 
-
-
-
+var ads = [
+	'<a target="_blank" href="https://www.amazon.com/b?_encoding=UTF8&tag=feedfyre-20&linkCode=ur2&linkId=3c885725594aa9cb7ce6bcd43cf9b12b&camp=1789&creative=9325&node=193870011">Deals on computer components</a>',
+	'<a target="_blank" href="https://www.amazon.com/b?_encoding=UTF8&tag=feedfyre-20&linkCode=ur2&linkId=f3f47ba10202ae7cd1b2fcbd04f3d6d2&camp=1789&creative=9325&node=172282">Deals on Electronics</a>',
+	'<a target="_blank" href="https://www.amazon.com/b?_encoding=UTF8&tag=feedfyre-20&linkCode=ur2&linkId=a099a3b4c2a0b2e61a2b454eb69065b8&camp=1789&creative=9325&node=468642">Deals on Video Games</a>',
+	'<a target="_blank" href="https://www.amazon.com/b?_encoding=UTF8&tag=feedfyre-20&linkCode=ur2&linkId=2df008bb2ae5348e543678eba8860f01&camp=1789&creative=9325&node=3375251">Deals on Sports Equipment</a>',
+	'<a target="_blank" href="https://www.amazon.com/gp/product/B00X4WHP5E/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=B00X4WHP5E&linkCode=as2&tag=feedfyre-20&linkId=afb5dcf41336dd29a7220f862473b0fb">Amazon Echo - Black</a>'
+];

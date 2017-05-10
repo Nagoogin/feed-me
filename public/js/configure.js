@@ -88,7 +88,6 @@ $(document).on('click', '.config', function() {
   var user = firebase.auth().currentUser;
   var selected = [];
   if (user) {
-    console.log($(this).text());
     var ref = firebase.database().ref('/users/' + user.uid + '/configurations/' +
     $(this).text());
     ref.once('value', function(snapshot) {
