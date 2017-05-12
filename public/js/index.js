@@ -188,7 +188,7 @@ function loadNews(news) {
         ad.className = 'ad-source grid-item';
 
         var top = document.createElement('div');
-        top.className = 'ad-top robot';
+        top.className = 'ad-top robot font-nm';
         top.innerHTML = 'Advertisement';
         ad.appendChild(top);
 
@@ -207,7 +207,7 @@ function loadNews(news) {
         // sortedArticles.push(ad);
       }
       var $content = $(sortedArticles);
-      $grid.append( $content ).masonry('appended', $content);
+      $grid.append($content).masonry('appended', $content);
       $grid.imagesLoaded().progress(function() {
         $grid.masonry('layout');
       });
