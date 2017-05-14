@@ -41,7 +41,7 @@ footer {
 
 /* MARK: Colors */
 .green {
-	color: #4ab086;
+	color: #4AB086;
 }
 
 .green-dk {
@@ -49,7 +49,7 @@ footer {
 }
 
 .gray-light {
-	color: #d3d3d3;
+	color: #D3D3D3;
 }
 
 .gray {
@@ -57,11 +57,11 @@ footer {
 }
 
 .white {
-	color: #fff;
+	color: #FFF;
 }
 
 .green-bg {
-	background-color: #4ab086;
+	background-color: #4AB086;
 }
 
 .red-bg {
@@ -70,9 +70,9 @@ footer {
 
 /* MARK: Shadows */
 .shadow {
-	-moz-box-shadow:    0 0 5px #ccc;
-  -webkit-box-shadow: 0 0 5px #ccc;
-  box-shadow:         0 0 5px #ccc;
+	-moz-box-shadow:    0 0 5px #CCC;
+  -webkit-box-shadow: 0 0 5px #CCC;
+  box-shadow:         0 0 5px #CCC;
 }
 
 
