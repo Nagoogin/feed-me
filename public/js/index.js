@@ -25,7 +25,7 @@ function initHome() {
       }
     } else {
       // User is not signed in, segue to login page
-      window.location = 'login.html';
+      window.location = 'signup.html';
     }
   });
 

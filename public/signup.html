@@ -162,7 +162,7 @@
             <div id="disclaimer-text">By signing up, you agree to our <a href="#">terms</a> and <a href="#">privacy</a> policy</div>
           </div>
           <div id="form-bottom" class="robot">
-            Have an account? <a href="#">Sign In</a>.
+            Have an account? <a href="login.html">Sign In</a>.
           </div>
         </div>
       </div>
@@ -185,5 +185,53 @@
       </div>
       <div class="col-lg-3"></div>
     </div>
+    <!-- MARK: Firebase .js scripts -->
+    <script src="https://www.gstatic.com/firebasejs/3.7.3/firebase.js"></script>
+    <script src="js/firebase.js"></script>
+    <script>
+      // Call init() upon the window loading
+      window.onload = function() {
+        init();
+      }
+
+      function init() {
+        var signUpButton = document.getElementById('signup-button');
+        signUpButton.addEventListener('click', createAccount, false);
+      }
+
+      function createAccount() {
+        var email = document.getElementById('signup-email');
+        var password = document.getElementById('signup-password');
+        var repeatedPassword = document.getElementById('repeated-password');
+
+        if (email.length < 4) {
+          alert('Please enter an email address');
+          return;
+        }
+        if (password.length < 4) {
+          alert('Please enter a password');
+          return;
+        }
+        if (password !== repeatedPassword) {
+          alert('Passwords do not match');
+          return;
+        }
+
+        firebase.auth().createUserWithEmailAndPassword(email, password).then(function(user) {
+          window.location = 'index.html';
+        }).catch(function(error) {
+          var errorCode = error.code;
+          var errorMessage = error.message;
+
+          if (errorCode == 'auth/weak-password') {
+            alert('The password is too weak');
+          } else {
+            alert(errorMessage);
+          }
+          console.log(error);
+        });
+
+      }
+    </script>
   </body>
 </html>

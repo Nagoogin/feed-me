@@ -85,7 +85,7 @@
 					<div id="saved-top" class="robot font-lg pad-15">
 						Saved Configurations
 						<span id="edit-button">
-							<button id="edit" class="btn btn-default" type="button" style="float: right;">
+							<button id="edit" class="btn btn-default" type="button" style="float: right;" data-toggle="modal" data-target="#editModal">
 								<i class="fa fa-pencil"></i>  Edit
 							</button>
 						</span>
@@ -112,14 +112,14 @@
 							<button id="save-new" class="btn btn-success" type="button" style="margin-top: 15px; float: right; margin-right: 10px;" data-toggle="modal" data-target="#myModal">
 								<i class="fa fa-bookmark"></i>&nbsp Save New</button>
 
-							<!-- Modal -->
+							<!-- Save Configuration Modal -->
 							<div id="myModal" class="modal fade" role="dialog">
 							  <div class="modal-dialog">
 
 							    <!-- Modal content-->
 							    <div class="modal-content">
 							      <div class="modal-header">
-							        <button onclick="clearModal();" type="button" class="close" data-dismiss="modal">&times;</button>
+							        <button onclick="clearModal('modal-sources');" type="button" class="close" data-dismiss="modal">&times;</button>
 							        <h4 class="modal-title">Save New Configuration</h4>
 							      </div>
 							      <div class="modal-body">
@@ -127,13 +127,35 @@
 											<div id="modal-sources"></div>
 							      </div>
 							      <div class="modal-footer">
-							        <button onclick="clearModal();" type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+							        <button onclick="clearModal('modal-sources');" type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
 											<button id="save-config" type="button" class="btn btn-primary" data-dismiss="modal">Save</button>
 							      </div>
 							    </div>
 
 							  </div>
 							</div><!-- /Modal -->
+
+							<!-- Edit Configuration Modal -->
+							<div id="editModal" class="modal fade" role="dialog">
+							  <div class="modal-dialog">
+
+							    <!-- Modal content-->
+							    <div class="modal-content">
+							      <div class="modal-header">
+							        <button onclick="clearModal('modal-configs');" type="button" class="close" data-dismiss="modal">&times;</button>
+							        <h4 class="modal-title">Edit Configurations</h4>
+							      </div>
+							      <div class="modal-body">
+											<div id="modal-configs"></div>
+							      </div>
+							      <div class="modal-footer">
+											<button id="done-button" type="button" class="btn btn-primary" data-dismiss="modal">Done</button>
+							      </div>
+							    </div>
+
+							  </div>
+							</div><!-- /Modal -->
+
 						</div>
 					</div>
 					<div id="sources-list-container" class="pad-15">

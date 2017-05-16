@@ -35,6 +35,14 @@ function initHome() {
   var logout = document.getElementById('logout-link');
   logout.addEventListener('click', handleLogOut, false);
 
+  // Event listener for edit button
+  var edit = document.getElementById('edit');
+  edit.addEventListener('click', editTouched, false);
+
+  // Event listener for done button
+  var done = document.getElementById('done-button');
+  done.addEventListener('click', doneTouched, false);
+
   // Event listener for save new button
   var save = document.getElementById('save-new');
   save.addEventListener('click', saveNew, false);
@@ -197,6 +205,34 @@ function saveNew() {
   }
 }
 
+/**
+ * Populates the edit configs modal with current configurations
+ */
+function editTouched() {
+  var configs = document.getElementById('modal-configs');
+  var user = firebase.auth().currentUser;
+  if (user) {
+    var ref = firebase.database().ref('/users/' + user.uid + '/configurations');
+    ref.once('value', function(snapshot) {
+      snapshot.forEach(function(childSnapshot) {
+        var name = childSnapshot.key;
+        var config = document.createElement('div');
+        config.className = 'config';
+        config.style.backgroundColor = '#878787';
+        config.innerHTML = name;
+        configs.appendChild(config);
+      });
+    });
+  }
+}
+
+/**
+ * Clears the edit configs modal after the done button is touched
+ */
+function doneTouched() {
+  clearModal('modal-configs');
+}
+
 // TODO: Refactor this!
 /**
  *
@@ -205,7 +241,7 @@ function saveTouched() {
   var saveName = document.getElementById('save-config-input').value;
   if (saveName == '') {
     alert("need a config name");
-    clearModal();
+    clearModal('modal-sources');
     return;
   }
   var selected = [];
@@ -218,7 +254,7 @@ function saveTouched() {
   for (var i = 0; i < selected.length; i++) {
     saveSource(selected[i], path);
   }
-  clearModal();
+  clearModal('modal-sources');
   var parent = document.getElementById('saved');
   var child = document.createElement('div');
   child.className = 'config';
@@ -228,10 +264,10 @@ function saveTouched() {
 }
 
 /**
- *
+ * Clears the modal configs with the given modal id
  */
-function clearModal() {
-  var modal = document.getElementById('modal-sources');
+function clearModal(id) {
+  var modal = document.getElementById(id);
   while(modal.firstChild) {
     modal.removeChild(modal.firstChild);
   }
